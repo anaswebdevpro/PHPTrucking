@@ -1,8 +1,26 @@
-<?php require_once '../app/views/layouts/header.php'; ?>
+<?php require_once '../app/views/layouts/admin_header.php'; ?>
+<div class="card">
 
 <h1>Website Settings</h1>
 
-<form action="<?= BASE_URL; ?>/settings" method="POST">
+<form action="<?= BASE_URL; ?>/settings" method="POST" enctype="multipart/form-data">
+    <?= csrf_field(); ?>
+
+    <div>
+        <label>Current Logo</label><br>
+        <?php if(!empty($settings['logo'])): ?>
+            <img src="<?= BASE_URL; ?>/public/uploads/<?= $settings['logo']; ?>" alt="Logo" width="150"><br><br>
+        <?php else: ?>
+            <p>No logo uploaded yet.</p>
+        <?php endif; ?>
+    </div>
+
+    <div>
+        <label>Upload New Logo</label><br>
+        <input type="file" name="logo" accept="image/*">
+    </div>
+
+    <br>
 
     <div>
         <label>Site Name</label><br>
@@ -62,4 +80,5 @@
 
 </form>
 
-<?php require_once '../app/views/layouts/footer.php'; ?>
+</div>
+<?php require_once '../app/views/layouts/admin_footer.php'; ?>

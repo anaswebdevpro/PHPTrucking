@@ -1,4 +1,5 @@
-<?php require_once '../app/views/layouts/header.php'; ?>
+<?php require_once '../app/views/layouts/admin_header.php'; ?>
+<div class="card">
 
 <h1>Banner Management</h1>
 
@@ -7,6 +8,7 @@
     method="POST"
     enctype="multipart/form-data"
 >
+    <?= csrf_field(); ?>
 
     <div>
         <label>Banner Title</label><br>
@@ -65,4 +67,5 @@
 
 <?php endforeach; ?>
 
-<?php require_once '../app/views/layouts/footer.php'; ?>
+</div>
+<?php require_once '../app/views/layouts/admin_footer.php'; ?>

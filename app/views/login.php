@@ -3,7 +3,7 @@
 <h1>Admin Login</h1>
 
 <form action="<?= BASE_URL; ?>/login" method="POST">
-
+    <?= csrf_field(); ?>
     <div>
         <label>Username</label><br>
         <input type="text" name="username" required>

@@ -1,7 +1,5 @@
-<hr>
-
 <footer>
-    <p>© 2026 Truck Service</p>
+    <p>&copy; <?= date('Y'); ?> <?= htmlspecialchars($settings['site_name'] ?? 'Truck Service'); ?>. All Rights Reserved.</p>
 </footer>
 
 </body>

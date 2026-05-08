@@ -24,7 +24,8 @@ class SettingsModel extends Database {
             email = :email,
             address = :address,
             facebook = :facebook,
-            instagram = :instagram
+            instagram = :instagram,
+            logo = :logo
 
             WHERE id = 1
         ";
@@ -38,7 +39,8 @@ class SettingsModel extends Database {
             ':email' => $data['email'],
             ':address' => $data['address'],
             ':facebook' => $data['facebook'],
-            ':instagram' => $data['instagram']
+            ':instagram' => $data['instagram'],
+            ':logo' => isset($data['logo']) ? $data['logo'] : null
         ]);
     }
 }
