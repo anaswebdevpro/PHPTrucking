@@ -16,7 +16,7 @@
     </div>
 
     <div>
-        <label>Upload New Logo</label><br>
+        <label>Upload New Logo <small>(Recommended: 200x50 PNG, Max 2MB)</small></label><br>
         <input type="file" name="logo" accept="image/*">
     </div>
 
@@ -26,7 +26,18 @@
         <label>Site Name</label><br>
         <input type="text"
                name="site_name"
-               value="<?= $settings['site_name']; ?>">
+               value="<?= htmlspecialchars($settings['site_name'] ?? ''); ?>">
+    </div>
+
+    <br>
+
+    <div>
+        <label>Display Branding (Logo vs Name)</label><br>
+        <select name="display_branding">
+            <option value="both" <?= ($settings['display_branding'] ?? 'both') == 'both' ? 'selected' : ''; ?>>Show Both Logo and Name</option>
+            <option value="logo" <?= ($settings['display_branding'] ?? '') == 'logo' ? 'selected' : ''; ?>>Show Logo Only (If uploaded)</option>
+            <option value="text" <?= ($settings['display_branding'] ?? '') == 'text' ? 'selected' : ''; ?>>Show Text Name Only</option>
+        </select>
     </div>
 
     <br>
@@ -69,7 +80,25 @@
         <label>Instagram</label><br>
         <input type="text"
                name="instagram"
-               value="<?= $settings['instagram']; ?>">
+               value="<?= htmlspecialchars($settings['instagram'] ?? ''); ?>">
+    </div>
+
+    <br>
+
+    <div>
+        <label>Twitter (X)</label><br>
+        <input type="text"
+               name="twitter"
+               value="<?= htmlspecialchars($settings['twitter'] ?? ''); ?>">
+    </div>
+
+    <br>
+
+    <div>
+        <label>LinkedIn</label><br>
+        <input type="text"
+               name="linkedin"
+               value="<?= htmlspecialchars($settings['linkedin'] ?? ''); ?>">
     </div>
 
     <br>

@@ -1,4 +1,3 @@
-
 <?php
 
 require_once '../app/core/Controller.php';
@@ -6,21 +5,46 @@ require_once '../app/core/Controller.php';
 class HomeController extends Controller {
 
     public function index() {
-        require_once '../app/models/BannerModel.php';
-        require_once '../app/models/SectionModel.php';
-        
-        $bannerModel = new BannerModel();
-        $banners = $bannerModel->getAllBanners();
+        require_once '../app/models/SettingsModel.php';
+        require_once '../app/models/HeroBannerModel.php';
+        require_once '../app/models/SupportSectionModel.php';
+        require_once '../app/models/CtaSectionModel.php';
+        require_once '../app/models/TestimonialModel.php';
+        require_once '../app/models/FaqModel.php';
+        require_once '../app/models/CategoryModel.php';
 
-        $sectionModel = new SectionModel();
-        $allSections = $sectionModel->getAllSections();
-        
-        $sections = [];
-        foreach($allSections as $sec) {
-            $sections[$sec['section_key']] = $sec;
-        }
+        $settingsModel = new SettingsModel();
+        $settings = $settingsModel->getSettings();
 
-        $this->view('home', ['banners' => $banners, 'sections' => $sections]);
+        $heroBannerModel = new HeroBannerModel();
+        $banners = $heroBannerModel->getActiveBanners();
+
+        $supportModel = new SupportSectionModel();
+        $supportSection = $supportModel->getSection();
+
+        $ctaModel = new CtaSectionModel();
+        $ctaSection = $ctaModel->getSection();
+
+        $testimonialModel = new TestimonialModel();
+        $testimonials = $testimonialModel->getActiveTestimonials();
+
+        $faqModel = new FaqModel();
+        $faqs = $faqModel->getActiveFaqs();
+
+        $categoryModel = new CategoryModel();
+        $categories = $categoryModel->getActiveCategories();
+
+        $data = [
+            'settings' => $settings,
+            'banners' => $banners,
+            'support_section' => $supportSection,
+            'cta_section' => $ctaSection,
+            'testimonials' => $testimonials,
+            'faqs' => $faqs,
+            'categories' => $categories
+        ];
+
+        $this->view('home', $data);
     }
 
     public function about() {

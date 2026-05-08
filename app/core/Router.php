@@ -42,34 +42,81 @@ class Router {
             case 'settings':
                  $adminController->settings();
                 break; 
-            case 'banners':
-                  $adminController->banners();
+
+            case 'hero-banners':
+                  $adminController->heroBanners();
                   break;
-            case 'sections':
-                  $adminController->sections();
+            case 'add-hero-banner':
+                  $adminController->addHeroBanner();
                   break;
+            case (preg_match('/^edit-hero-banner\/(\d+)$/', $url, $matches) ? true : false):
+                  $adminController->editHeroBanner($matches[1]);
+                  break;
+            case (preg_match('/^delete-hero-banner\/(\d+)$/', $url, $matches) ? true : false):
+                  $adminController->deleteHeroBanner($matches[1]);
+                  break;
+
+            case 'support-section':
+                  $adminController->supportSection();
+                  break;
+
+            case 'cta-section':
+                  $adminController->ctaSection();
+                  break;
+
             case 'admin-services':
                   $adminController->adminServices();
                   break;
             case 'add-service':
                   $adminController->addService();
                   break;
-          case (preg_match('/^delete-banner\/(\d+)$/', $url, $matches) ? true : false):
-
-                 $adminController->deleteBanner($matches[1]);
-
-                     break;
-          case (preg_match('/^edit-section\/(\d+)$/', $url, $matches) ? true : false):
-                 $adminController->editSection($matches[1]);
-                 break;
-          case (preg_match('/^edit-service\/(\d+)$/', $url, $matches) ? true : false):
-                 $adminController->editAdminService($matches[1]);
-                 break;
+            case (preg_match('/^edit-service\/(\d+)$/', $url, $matches) ? true : false):
+                  $adminController->editAdminService($matches[1]);
+                  break;
           case (preg_match('/^delete-service\/(\d+)$/', $url, $matches) ? true : false):
                  $adminController->deleteService($matches[1]);
                  break;
             case 'messages':
                   $adminController->messages();
+                  break;
+
+            case 'testimonials':
+                  $adminController->testimonials();
+                  break;
+            case 'add-testimonial':
+                  $adminController->addTestimonial();
+                  break;
+            case (preg_match('/^edit-testimonial\/(\d+)$/', $url, $matches) ? true : false):
+                  $adminController->editTestimonial($matches[1]);
+                  break;
+            case (preg_match('/^delete-testimonial\/(\d+)$/', $url, $matches) ? true : false):
+                  $adminController->deleteTestimonial($matches[1]);
+                  break;
+
+            case 'faqs':
+                  $adminController->faqs();
+                  break;
+            case 'add-faq':
+                  $adminController->addFaq();
+                  break;
+            case (preg_match('/^edit-faq\/(\d+)$/', $url, $matches) ? true : false):
+                  $adminController->editFaq($matches[1]);
+                  break;
+            case (preg_match('/^delete-faq\/(\d+)$/', $url, $matches) ? true : false):
+                  $adminController->deleteFaq($matches[1]);
+                  break;
+
+            case 'categories':
+                  $adminController->categories();
+                  break;
+            case 'add-category':
+                  $adminController->addCategory();
+                  break;
+            case (preg_match('/^edit-category\/(\d+)$/', $url, $matches) ? true : false):
+                  $adminController->editCategory($matches[1]);
+                  break;
+            case (preg_match('/^delete-category\/(\d+)$/', $url, $matches) ? true : false):
+                  $adminController->deleteCategory($matches[1]);
                   break;
 
             default:

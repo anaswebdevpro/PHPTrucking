@@ -5,18 +5,32 @@
    HOME PAGE SPECIFIC STYLES
    ========================================= */
 
-/* HERO SECTION */
+/* HERO SLIDER STYLES */
 .hero {
     position: relative;
     height: 100vh;
     min-height: 700px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: var(--color-bg-dark);
     overflow: hidden;
     margin-top: -80px; /* Offset for fixed nav */
+}
+
+.hero-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.2s ease-in-out, visibility 1.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     padding-top: 80px;
+}
+
+.hero-slide.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
 }
 
 .hero-bg {
@@ -25,10 +39,14 @@
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    background-size: cover;
+    background-position: center;
     z-index: 1;
     filter: brightness(0.4) contrast(1.1);
     transform: scale(1.05);
+}
+
+.hero-slide.active .hero-bg {
     animation: slowZoom 20s infinite alternate;
 }
 
@@ -39,12 +57,48 @@
 
 .hero-content {
     position: relative;
-    z-index: 2;
-    text-align: center;
-    color: var(--text-light);
-    max-width: 900px;
-    padding: 0 20px;
-    animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    z-index: 3;
+    text-align: left;
+    width: 100%;
+    max-width: 800px;
+   
+    margin-left:5vw;
+    padding: 0 24px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-slide.active .hero-content {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.3s;
+}
+
+.slider-controls {
+    position: absolute;
+    bottom: 120px;
+    left: auto;
+    right: 50px;
+    z-index: 10;
+    display: flex;
+    gap: 12px;
+}
+
+.slider-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.slider-dot.active {
+    background: var(--color-primary);
+    transform: scale(1.3);
 }
 
 .hero-badge {
@@ -77,13 +131,12 @@
     color: rgba(255, 255, 255, 0.85);
     margin-bottom: 40px;
     max-width: 700px;
-    margin-inline: auto;
 }
 
 .hero-actions {
     display: flex;
     gap: 16px;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
 }
 
@@ -551,26 +604,106 @@
     .testimonial-card {
         min-width: 300px;
     }
+    
 }
 
 </style>
 
 <!-- HERO SECTION -->
 <section class="hero">
-    <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=2070&q=80" alt="Premium Semi Truck" class="hero-bg">
-    <div class="hero-content">
-        <div class="hero-badge">
-            <i class="ph-fill ph-star"></i>
-            Top Rated Parts Supplier
+    <?php if(!empty($banners)): ?>
+        <?php foreach($banners as $index => $banner): ?>
+            <div class="hero-slide <?= $index === 0 ? 'active' : '' ?>">
+                <div class="hero-bg" style="background-image: url('<?= BASE_URL; ?>/public/uploads/<?= htmlspecialchars($banner['image']); ?>');"></div>
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <i class="ph-fill ph-star"></i>
+                        Top Rated Parts Supplier
+                    </div>
+                    <h1><?= htmlspecialchars($banner['title']); ?></h1>
+                    <p><?= nl2br(htmlspecialchars($sections['hero']['content'] ?? 'Your trusted source for premium heavy-duty semi truck and trailer parts.')); ?></p>
+                    <div class="hero-actions">
+                        <a href="<?= BASE_URL; ?>/parts" class="btn btn-primary btn-large">Browse Parts</a>
+                        <a href="<?= BASE_URL; ?>/quote" class="btn btn-outline btn-large">Get a Quote</a>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+        
+        <?php if(count($banners) > 1): ?>
+        <div class="slider-controls">
+            <?php foreach($banners as $index => $banner): ?>
+                <button class="slider-dot <?= $index === 0 ? 'active' : '' ?>" data-index="<?= $index ?>" aria-label="Go to slide <?= $index + 1 ?>"></button>
+            <?php endforeach; ?>
         </div>
-        <h1>THE PARTS YOU NEED.<br>THE SERVICE YOU DESERVE.</h1>
-        <p>Your trusted source for premium heavy-duty semi truck and trailer parts. With 3 locations and over 10,000+ parts in stock, we keep your fleet moving with fast turnaround and expert fitment.</p>
-        <div class="hero-actions">
-            <a href="<?= BASE_URL; ?>/parts" class="btn btn-primary btn-large">Browse Parts</a>
-            <a href="<?= BASE_URL; ?>/quote" class="btn btn-outline btn-large">Get a Quote</a>
+        <?php endif; ?>
+
+    <?php elseif(count($banners) > 0): ?>
+        <!-- Single fallback using banners -->
+        <div class="hero-slide active">
+            <div class="hero-bg" style="background-image: url('<?= htmlspecialchars((strpos($banners[0]['image'], 'http') === 0) ? $banners[0]['image'] : BASE_URL.'/public/uploads/'.$banners[0]['image']); ?>');"></div>
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="ph-fill ph-star"></i>
+                    Top Rated Parts Supplier
+                </div>
+                <h1><?= htmlspecialchars($banners[0]['title']); ?></h1>
+                <p><?= nl2br(htmlspecialchars($banners[0]['subtitle'] ?? 'Your trusted source for premium heavy-duty semi truck and trailer parts.')); ?></p>
+                <div class="hero-actions">
+                    <a href="<?= BASE_URL; ?>/parts" class="btn btn-primary btn-large">Browse Parts</a>
+                    <a href="<?= BASE_URL; ?>/quote" class="btn btn-outline btn-large">Get a Quote</a>
+                </div>
+            </div>
         </div>
-    </div>
+    <?php endif; ?>
 </section>
+
+<!-- Hero Slider Script -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.slider-dot');
+    let currentSlide = 0;
+    const slideInterval = 6000; // 6 seconds per slide
+    let timer;
+
+    if(slides.length <= 1) return; // No need for slider if only 1 slide
+
+    function goToSlide(index) {
+        slides[currentSlide].classList.remove('active');
+        if(dots.length) dots[currentSlide].classList.remove('active');
+        
+        currentSlide = index;
+        
+        slides[currentSlide].classList.add('active');
+        if(dots.length) dots[currentSlide].classList.add('active');
+    }
+
+    function nextSlide() {
+        let next = (currentSlide + 1) % slides.length;
+        goToSlide(next);
+    }
+
+    function startTimer() {
+        timer = setInterval(nextSlide, slideInterval);
+    }
+
+    function resetTimer() {
+        clearInterval(timer);
+        startTimer();
+    }
+
+    dots.forEach(dot => {
+        dot.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            goToSlide(index);
+            resetTimer();
+        });
+    });
+
+    startTimer();
+});
+</script>
 
 <!-- FEATURES SECTION (Overlapping Hero) -->
 <section class="features-section">
@@ -631,97 +764,43 @@
 </section>
 
 <!-- CATEGORIES SECTION -->
+<?php if(!empty($categories)): ?>
 <section class="categories-section">
     <div class="container">
         <h2 class="section-title animate-on-scroll">Parts For Every Component</h2>
         <div class="categories-grid">
             
-            <!-- Engine -->
-            <div class="category-card animate-on-scroll">
-                <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=1000&q=80" alt="Engine Parts" class="category-img">
+            <?php foreach($categories as $index => $cat): ?>
+            <div class="category-card animate-on-scroll" style="transition-delay: <?= ($index % 3) * 0.1 ?>s;">
+                <?php $catImg = $cat['image'] ?: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=1000&q=80'; ?>
+                <img src="<?= htmlspecialchars((strpos($catImg, 'http') === 0) ? $catImg : BASE_URL.'/public/uploads/'.$catImg); ?>" alt="<?= htmlspecialchars($cat['title']); ?>" class="category-img">
                 <div class="category-overlay">
-                    <span class="category-number">01</span>
+                    <span class="category-number"><?= sprintf("%02d", $index + 1); ?></span>
                     <div class="category-content">
-                        <h3>Engine & Emissions</h3>
-                        <p>Gaskets, filters, sensors, exhaust components, and complete engine rebuild kits for all major diesel engines.</p>
+                        <h3><?= htmlspecialchars($cat['title']); ?></h3>
+                        <p><?= htmlspecialchars($cat['description']); ?></p>
                     </div>
                 </div>
             </div>
-
-            <!-- Brakes -->
-            <div class="category-card animate-on-scroll" style="transition-delay: 0.1s;">
-                <img src="https://images.unsplash.com/photo-1542323565-d0c0f91bb816?auto=format&fit=crop&w=1000&q=80" alt="Brakes & Wheels" class="category-img">
-                <div class="category-overlay">
-                    <span class="category-number">02</span>
-                    <div class="category-content">
-                        <h3>Air Brakes & Drums</h3>
-                        <p>Air brake components, drums, rotors, wheels, chambers, slack adjusters, and complete brake kits.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Suspension -->
-            <div class="category-card animate-on-scroll" style="transition-delay: 0.2s;">
-                <img src="https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?auto=format&fit=crop&w=1000&q=80" alt="Suspension Parts" class="category-img">
-                <div class="category-overlay">
-                    <span class="category-number">03</span>
-                    <div class="category-content">
-                        <h3>Suspension</h3>
-                        <p>Air springs, shock absorbers, leaf springs, bushings, and complete suspension assemblies.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Electrical -->
-            <div class="category-card animate-on-scroll">
-                <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1000&q=80" alt="Electrical Parts" class="category-img">
-                <div class="category-overlay">
-                    <span class="category-number">04</span>
-                    <div class="category-content">
-                        <h3>Electrical & Lighting</h3>
-                        <p>Starters, alternators, wiring, LEDs, signal lights, and complete electrical systems.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Trailer -->
-            <div class="category-card animate-on-scroll" style="transition-delay: 0.1s;">
-                <img src="https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?auto=format&fit=crop&w=1000&q=80" alt="Trailer Parts" class="category-img">
-                <div class="category-overlay">
-                    <span class="category-number">05</span>
-                    <div class="category-content">
-                        <h3>Trailer Parts</h3>
-                        <p>Landing gear, door hardware, king pins, lighting, mud flaps, and all trailer maintenance components.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Drivetrain -->
-            <div class="category-card animate-on-scroll" style="transition-delay: 0.2s;">
-                <img src="https://images.unsplash.com/photo-1616788484674-67f78810e206?auto=format&fit=crop&w=1000&q=80" alt="Drivetrain" class="category-img">
-                <div class="category-overlay">
-                    <span class="category-number">06</span>
-                    <div class="category-content">
-                        <h3>Drivetrain</h3>
-                        <p>Transmission, clutch, driveline essentials, axle components, and complete drivetrain assemblies.</p>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
 
         </div>
     </div>
 </section>
+<?php endif; ?>
 
 <!-- SUPPORT SECTION -->
+<?php if(isset($support_section) && $support_section['is_active']): ?>
 <section class="support-section">
     <div class="container">
         <div class="support-grid">
             <div class="support-image-container animate-on-scroll">
-                <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=1000&q=80" alt="Customer Support Agent">
+                <?php $supportImage = $support_section['image'] ?: 'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=1000&q=80'; ?>
+                <img src="<?= htmlspecialchars((strpos($supportImage, 'http') === 0) ? $supportImage : BASE_URL.'/public/uploads/'.$supportImage); ?>" alt="Customer Support Agent">
             </div>
             <div class="support-content animate-on-scroll" style="transition-delay: 0.2s;">
-                <h2>24/7 Dedicated Fleet Support</h2>
-                <p>Downtime costs you money. Our expert fitment and support team is dedicated to getting your fleet back on the road as quickly as possible. Whether you need a simple filter or a complete engine rebuild kit, we have you covered.</p>
+                <h2><?= htmlspecialchars($support_section['title']); ?></h2>
+                <p><?= nl2br(htmlspecialchars($support_section['content'])); ?></p>
                 
                 <div class="support-features">
                     <div class="support-feature">
@@ -752,131 +831,78 @@
         </div>
     </div>
 </section>
+<?php endif; ?>
 
 <!-- TESTIMONIALS SECTION -->
+<?php if(!empty($testimonials)): ?>
 <section class="testimonials-section">
     <div class="container">
         <h2 class="section-title animate-on-scroll">Real Reviews From Real Customers</h2>
         <div class="testimonials-slider animate-on-scroll">
             
+            <?php foreach($testimonials as $testimonial): ?>
             <div class="testimonial-card">
                 <div class="testimonial-stars">
-                    <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    <?php for($i=0; $i<$testimonial['stars']; $i++): ?>
+                        <i class="ph-fill ph-star"></i>
+                    <?php endfor; ?>
                 </div>
-                <p class="testimonial-text">"The truck zone, best shop in Montreal. The manager helped me get all the parts for my truck. Best price for all parts. Everyone who works there are very professional and do their job exceptional."</p>
+                <p class="testimonial-text">"<?= htmlspecialchars($testimonial['content']); ?>"</p>
                 <div class="testimonial-author">
-                    <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=150&q=80" alt="Customer" class="testimonial-avatar">
+                    <?php $avatarImg = $testimonial['avatar'] ?: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=150&q=80'; ?>
+                    <img src="<?= htmlspecialchars((strpos($avatarImg, 'http') === 0) ? $avatarImg : BASE_URL.'/public/uploads/'.$avatarImg); ?>" alt="Customer" class="testimonial-avatar">
                     <div class="testimonial-author-info">
-                        <h4>Jaspreet Singh</h4>
-                        <p>Owner Operator</p>
+                        <h4><?= htmlspecialchars($testimonial['author_name']); ?></h4>
+                        <p><?= htmlspecialchars($testimonial['author_role']); ?></p>
                     </div>
                 </div>
             </div>
-
-            <div class="testimonial-card">
-                <div class="testimonial-stars">
-                    <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
-                </div>
-                <p class="testimonial-text">"Excellent fast and efficient service. Great wide inventory and very competitive pricing. Thanks for helping us guys! Always get a good service over there and would highly recommend them."</p>
-                <div class="testimonial-author">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Customer" class="testimonial-avatar">
-                    <div class="testimonial-author-info">
-                        <h4>Umer Javed</h4>
-                        <p>Fleet Manager</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-card">
-                <div class="testimonial-stars">
-                    <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
-                </div>
-                <p class="testimonial-text">"Truck Zone offers a great selection of heavy truck parts for brands like Peterbilt, International, Volvo, and Freightliner. Their prices are competitive, and the service is excellent."</p>
-                <div class="testimonial-author">
-                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80" alt="Customer" class="testimonial-avatar">
-                    <div class="testimonial-author-info">
-                        <h4>Fa W ad</h4>
-                        <p>Independent Driver</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-card">
-                <div class="testimonial-stars">
-                    <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
-                </div>
-                <p class="testimonial-text">"I am big rig school owner and I always buy parts from here. They always give me great price and service. Unmatched service, honest people, and true professionals who treat you like family."</p>
-                <div class="testimonial-author">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80" alt="Customer" class="testimonial-avatar">
-                    <div class="testimonial-author-info">
-                        <h4>Aisha Ozor</h4>
-                        <p>Driving School Owner</p>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
 
         </div>
     </div>
 </section>
+<?php endif; ?>
+
+
+
+<!-- CALL TO ACTION -->
+<?php if(isset($cta_section) && $cta_section['is_active']): ?>
+<section class="cta-premium">
+    <div class="cta-pattern"></div>
+    <div class="container">
+        <div class="cta-content animate-on-scroll">
+            <h2><?= htmlspecialchars($cta_section['title']); ?></h2>
+            <p><?= nl2br(htmlspecialchars($cta_section['content'])); ?></p>
+            <a href="tel:<?= preg_replace('/[^0-9+]/', '', $settings['phone'] ?? '+18005550199'); ?>" class="btn btn-primary btn-large">
+                <i class="ph-fill ph-phone-call"></i> Call Us Now: <?= htmlspecialchars($settings['phone'] ?? '1-800-555-0199'); ?>
+            </a>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
 
 <!-- FAQ SECTION -->
+<?php if(!empty($faqs)): ?>
 <section class="faq-section">
     <div class="container">
         <h2 class="section-title animate-on-scroll">Frequently Asked Questions</h2>
         <div class="faq-container animate-on-scroll">
             
+            <?php foreach($faqs as $faq): ?>
             <div class="faq-item">
                 <details>
-                    <summary>Do you carry both OEM and aftermarket parts?</summary>
+                    <summary><?= htmlspecialchars($faq['question']); ?></summary>
                     <div class="faq-answer">
-                        Yes, we offer both OEM-grade and high-quality aftermarket options to accommodate your budget and fleet requirements. Our experts can advise you on the best choice for your specific repair.
+                        <?= nl2br(htmlspecialchars($faq['answer'])); ?>
                     </div>
                 </details>
             </div>
-
-            <div class="faq-item">
-                <details>
-                    <summary>How quickly can I get my parts?</summary>
-                    <div class="faq-answer">
-                        With over 10,000 items in stock across our 3 locations, many parts are available for same-day local pickup. For items requiring shipping, we utilize expedited regional carriers to minimize your downtime.
-                    </div>
-                </details>
-            </div>
-
-            <div class="faq-item">
-                <details>
-                    <summary>How do I make sure the part fits my truck?</summary>
-                    <div class="faq-answer">
-                        Simply provide our team with your truck's VIN, the engine serial number, or the original part number. Our fitment experts will cross-reference our database to guarantee you get the exact right part the first time.
-                    </div>
-                </details>
-            </div>
-
-            <div class="faq-item">
-                <details>
-                    <summary>Do you offer specialized pricing for large fleets?</summary>
-                    <div class="faq-answer">
-                        Absolutely. We offer competitive fleet accounts with volume-based pricing structures. Contact our sales team directly to set up an account and discuss your fleet's specific maintenance needs.
-                    </div>
-                </details>
-            </div>
+            <?php endforeach; ?>
 
         </div>
     </div>
 </section>
-
-<!-- CALL TO ACTION -->
-<section class="cta-premium">
-    <div class="cta-pattern"></div>
-    <div class="container">
-        <div class="cta-content animate-on-scroll">
-            <h2>CAN'T FIND WHAT YOU NEED?</h2>
-            <p>Our team can source any part for any make and model. Give us a call and we'll track it down for you instantly with our nationwide network.</p>
-            <a href="tel:+18005550199" class="btn btn-primary btn-large">
-                <i class="ph-fill ph-phone-call"></i> Call Us Now: 1-800-555-0199
-            </a>
-        </div>
-    </div>
-</section>
+<?php endif; ?>
 
 <?php require_once '../app/views/layouts/footer.php'; ?>

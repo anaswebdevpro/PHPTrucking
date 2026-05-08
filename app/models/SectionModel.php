@@ -18,14 +18,15 @@ class SectionModel extends Database {
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function updateSection($id, $title, $content, $image) {
-        $query = "UPDATE homepage_sections SET title = :title, content = :content, image = :image WHERE id = :id";
+    public function updateSection($id, $title, $content, $image, $is_active) {
+        $query = "UPDATE homepage_sections SET title = :title, content = :content, image = :image, is_active = :is_active WHERE id = :id";
         $statement = $this->connection->prepare($query);
         return $statement->execute([
             ':id' => $id,
             ':title' => $title,
             ':content' => $content,
-            ':image' => $image
+            ':image' => $image,
+            ':is_active' => $is_active
         ]);
     }
 }

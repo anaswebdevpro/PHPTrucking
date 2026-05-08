@@ -39,9 +39,13 @@
     <div class="sidebar-header">Truck Service Admin</div>
     <?php $current_page = basename($_SERVER['REQUEST_URI']); ?>
     <a href="<?= BASE_URL; ?>/dashboard" class="nav-link <?= $current_page == 'dashboard' ? 'active' : '' ?>">Dashboard</a>
-    <a href="<?= BASE_URL; ?>/banners" class="nav-link <?= strpos($current_page, 'banner') !== false ? 'active' : '' ?>">Banners</a>
-    <a href="<?= BASE_URL; ?>/sections" class="nav-link <?= strpos($current_page, 'section') !== false ? 'active' : '' ?>">CMS Sections</a>
+    <a href="<?= BASE_URL; ?>/hero-banners" class="nav-link <?= strpos($current_page, 'hero-banner') !== false ? 'active' : '' ?>">Hero Slider</a>
+    <a href="<?= BASE_URL; ?>/support-section" class="nav-link <?= strpos($current_page, 'support-section') !== false ? 'active' : '' ?>">Support Section</a>
+    <a href="<?= BASE_URL; ?>/cta-section" class="nav-link <?= strpos($current_page, 'cta-section') !== false ? 'active' : '' ?>">CTA Section</a>
+    <a href="<?= BASE_URL; ?>/categories" class="nav-link <?= strpos($current_page, 'categor') !== false ? 'active' : '' ?>">Parts Categories</a>
     <a href="<?= BASE_URL; ?>/admin-services" class="nav-link <?= strpos($current_page, 'service') !== false ? 'active' : '' ?>">Services</a>
+    <a href="<?= BASE_URL; ?>/testimonials" class="nav-link <?= strpos($current_page, 'testimonial') !== false ? 'active' : '' ?>">Testimonials</a>
+    <a href="<?= BASE_URL; ?>/faqs" class="nav-link <?= strpos($current_page, 'faq') !== false ? 'active' : '' ?>">FAQs</a>
     <a href="<?= BASE_URL; ?>/messages" class="nav-link <?= strpos($current_page, 'message') !== false ? 'active' : '' ?>">Messages</a>
     <a href="<?= BASE_URL; ?>/settings" class="nav-link <?= $current_page == 'settings' ? 'active' : '' ?>">Settings</a>
 </div>
