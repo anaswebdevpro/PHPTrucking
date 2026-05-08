@@ -2,6 +2,7 @@
 
 require_once '../app/core/Database.php';
 
+
 class AdminModel extends Database {
 
     public function findAdminByUsername($username) {

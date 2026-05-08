@@ -4,38 +4,41 @@ require_once '../app/core/Database.php';
 
 class SettingsModel extends Database {
 
-    public function getAllSettings() {
+    public function getSettings() {
 
-        $query = "SELECT * FROM settings";
+        $query = "SELECT * FROM settings LIMIT 1";
 
         $statement = $this->connection->prepare($query);
 
         $statement->execute();
 
-        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-        $settings = [];
-
-        foreach($results as $row) {
-
-            $settings[$row['setting_key']] = $row['setting_value'];
-        }
-
-        return $settings;
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function updateSetting($key, $value) {
+    public function updateSettings($data) {
 
-        $query = "UPDATE settings
-                  SET setting_value = :value
-                  WHERE setting_key = :key";
+        $query = "UPDATE settings SET
+
+            site_name = :site_name,
+            phone = :phone,
+            email = :email,
+            address = :address,
+            facebook = :facebook,
+            instagram = :instagram
+
+            WHERE id = 1
+        ";
 
         $statement = $this->connection->prepare($query);
 
-        $statement->bindParam(':key', $key);
+        return $statement->execute([
 
-        $statement->bindParam(':value', $value);
-
-        return $statement->execute();
+            ':site_name' => $data['site_name'],
+            ':phone' => $data['phone'],
+            ':email' => $data['email'],
+            ':address' => $data['address'],
+            ':facebook' => $data['facebook'],
+            ':instagram' => $data['instagram']
+        ]);
     }
 }

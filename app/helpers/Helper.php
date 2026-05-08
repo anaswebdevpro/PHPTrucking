@@ -6,5 +6,5 @@ function getSettings() {
 
     $settingsModel = new SettingsModel();
 
-    return $settingsModel->getAllSettings();
+  return $settingsModel->getSettings();
 }
