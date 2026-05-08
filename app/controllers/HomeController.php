@@ -1,16 +1,22 @@
+
 <?php
 
-class HomeController {
+require_once '../app/core/Controller.php';
+
+class HomeController extends Controller {
 
     public function index() {
-        require_once '../app/views/home.php';
+
+        $this->view('home');
     }
 
     public function about() {
-        require_once '../app/views/about.php';
+
+        $this->view('about');
     }
 
     public function contact() {
-        require_once '../app/views/contact.php';
+
+        $this->view('contact');
     }
 }

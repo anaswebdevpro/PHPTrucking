@@ -1,27 +1,43 @@
 <?php
 
+require_once '../app/controllers/HomeController.php';
+require_once '../app/controllers/AdminController.php';
+
 class Router {
 
     public function route($url) {
 
-        require_once '../app/controllers/HomeController.php';
+        $url = trim($url, '/');
 
-        $controller = new HomeController();
-
-        if(empty($url)) {
-            $controller->index();
-            return;
-        }
+        $homeController = new HomeController();
+        $adminController = new AdminController();
 
         switch($url) {
 
+            case '':
+                $homeController->index();
+                break;
+
             case 'about':
-                $controller->about();
+                $homeController->about();
                 break;
 
             case 'contact':
-                $controller->contact();
+                $homeController->contact();
                 break;
+
+            case 'login':
+                $adminController->login();
+                break;
+            case 'dashboard':
+                 $adminController->dashboard();
+                 break;
+             case 'logout':
+                 $adminController->logout();
+                 break; 
+             case 'settings':
+                 $adminController->settings();
+                break; 
 
             default:
                 echo "404 Page Not Found";
