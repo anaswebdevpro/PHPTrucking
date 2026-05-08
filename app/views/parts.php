@@ -2,7 +2,7 @@
 
 <style>
 /* =========================================
-   HOME PAGE SPECIFIC STYLES
+   PARTS PAGE SPECIFIC STYLES
    ========================================= */
 
 /* HERO SLIDER STYLES */
@@ -77,7 +77,7 @@
 
 .slider-controls {
     position: absolute;
-    bottom: 120px;
+    bottom: 50px;
     left: auto;
     right: 50px;
     z-index: 10;
@@ -143,63 +143,6 @@
 .btn-large {
     padding: 16px 36px;
     font-size: 1.1rem;
-}
-
-/* STATS / FEATURES SECTION (OVERLAPPING HERO) */
-.features-section {
-    position: relative;
-    z-index: 10;
-    margin-top: -80px;
-    padding-bottom: 80px;
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 24px;
-}
-
-.feature-card {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: var(--radius-lg);
-    padding: 40px 32px;
-    box-shadow: var(--shadow-lg);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
-}
-
-.feature-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-}
-
-.feature-icon {
-    width: 64px;
-    height: 64px;
-    background: var(--color-primary);
-    color: var(--color-secondary);
-    border-radius: var(--radius-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    margin-bottom: 24px;
-}
-
-.feature-card h3 {
-    font-size: 1.4rem;
-    margin-bottom: 12px;
-    color: var(--color-secondary);
-}
-
-.feature-card p {
-    color: var(--text-muted);
-    line-height: 1.6;
 }
 
 /* CATEGORIES SECTION */
@@ -296,90 +239,6 @@
     transition-delay: 0.1s;
 }
 
-/* PREMIUM CTA SECTION */
-.cta-premium {
-    position: relative;
-    padding: 100px 0;
-    background: var(--color-secondary);
-    overflow: hidden;
-}
-
-.cta-pattern {
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(circle at 20px 20px, rgba(255, 193, 7, 0.05) 2px, transparent 0);
-    background-size: 40px 40px;
-    opacity: 0.5;
-}
-
-.cta-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.cta-content h2 {
-    color: var(--text-light);
-    font-size: 3rem;
-    margin-bottom: 24px;
-}
-
-.cta-content p {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1.25rem;
-    margin-bottom: 40px;
-}
-
-/* BRAND LOGOS MARQUEE */
-.brands-section {
-    padding: 60px 0;
-    background: white;
-    border-bottom: 1px solid #eee;
-    overflow: hidden;
-}
-
-.brands-title {
-    text-align: center;
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--text-muted);
-    margin-bottom: 30px;
-    font-weight: 600;
-}
-
-.marquee-container {
-    width: 100%;
-    display: flex;
-    overflow: hidden;
-}
-
-.marquee-content {
-    display: flex;
-    align-items: center;
-    gap: 80px;
-    animation: marquee 30s linear infinite;
-    padding-right: 80px;
-}
-
-.marquee-content h4 {
-    font-size: 1.5rem;
-    color: #94a3b8;
-    white-space: nowrap;
-    transition: color 0.3s;
-}
-
-.marquee-content h4:hover {
-    color: var(--color-secondary);
-}
-
-@keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
 /* SUPPORT SECTION */
 .support-section {
     padding: 100px 0;
@@ -455,95 +314,10 @@
     transform: scale(1.05);
 }
 
-/* TESTIMONIALS SECTION */
-.testimonials-section {
-    padding: 100px 0;
-    background: var(--color-bg-light);
-    overflow: hidden;
-}
-
-.testimonials-slider-container {
-    width: 100%;
-    overflow: hidden;
-    padding: 20px 0 40px;
-}
-
-.testimonials-slider {
-    display: flex;
-    gap: 30px;
-    width: max-content;
-    animation: scroll-left 40s linear infinite;
-}
-
-.testimonials-slider:hover {
-    animation-play-state: paused;
-}
-
-@keyframes scroll-left {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-50% - 15px)); }
-}
-
-.testimonial-card {
-    min-width: 400px;
-    background: white;
-    padding: 40px;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-    border: 1px solid rgba(0,0,0,0.05);
-    transition: transform var(--transition-normal);
-}
-
-.testimonial-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
-}
-
-.testimonial-stars {
-    color: var(--color-primary);
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    display: flex;
-    gap: 4px;
-}
-
-.testimonial-text {
-    font-size: 1.1rem;
-    color: var(--text-main);
-    font-style: italic;
-    margin-bottom: 24px;
-    line-height: 1.6;
-}
-
-.testimonial-author {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-.testimonial-avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.testimonial-author-info h4 {
-    font-size: 1.1rem;
-    color: var(--color-secondary);
-    margin: 0 0 4px 0;
-}
-
-.testimonial-author-info p {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    margin: 0;
-}
-
 /* FAQ SECTION */
 .faq-section {
     padding: 100px 0;
-    background: white;
+    background: var(--color-bg-light);
 }
 
 .faq-container {
@@ -567,7 +341,7 @@
     font-size: 1.2rem;
     font-weight: 600;
     color: var(--color-secondary);
-    background: var(--color-bg-light);
+    background: white;
     cursor: pointer;
     list-style: none;
     display: flex;
@@ -592,7 +366,7 @@
 }
 
 .faq-item details[open] summary {
-    background: white;
+    background: var(--color-bg-light);
     border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
@@ -608,12 +382,7 @@
     .support-grid {
         grid-template-columns: 1fr;
     }
-    .testimonial-card {
-        min-width: 300px;
-    }
-    
 }
-
 </style>
 
 <!-- HERO SECTION -->
@@ -624,15 +393,11 @@
                 <div class="hero-bg" style="background-image: url('<?= BASE_URL; ?>/public/uploads/<?= htmlspecialchars($banner['image']); ?>');"></div>
                 <div class="hero-content">
                     <div class="hero-badge">
-                        <i class="ph-fill ph-star"></i>
-                        Top Rated Parts Supplier
+                        <i class="ph-fill ph-gear"></i>
+                        Premium Truck Parts
                     </div>
                     <h1><?= htmlspecialchars($banner['title']); ?></h1>
-                    <p><?= nl2br(htmlspecialchars($sections['hero']['content'] ?? 'Your trusted source for premium heavy-duty semi truck and trailer parts.')); ?></p>
-                    <div class="hero-actions">
-                        <a href="<?= BASE_URL; ?>/parts" class="btn btn-primary btn-large">Browse Parts</a>
-                        <a href="<?= BASE_URL; ?>/quote" class="btn btn-outline btn-large">Get a Quote</a>
-                    </div>
+                    <p><?= nl2br(htmlspecialchars($banner['subtitle'] ?? 'Your trusted source for premium heavy-duty semi truck and trailer parts.')); ?></p>
                 </div>
             </div>
         <?php endforeach; ?>
@@ -651,15 +416,24 @@
             <div class="hero-bg" style="background-image: url('<?= htmlspecialchars((strpos($banners[0]['image'], 'http') === 0) ? $banners[0]['image'] : BASE_URL.'/public/uploads/'.$banners[0]['image']); ?>');"></div>
             <div class="hero-content">
                 <div class="hero-badge">
-                    <i class="ph-fill ph-star"></i>
-                    Top Rated Parts Supplier
+                    <i class="ph-fill ph-gear"></i>
+                    Premium Truck Parts
                 </div>
                 <h1><?= htmlspecialchars($banners[0]['title']); ?></h1>
                 <p><?= nl2br(htmlspecialchars($banners[0]['subtitle'] ?? 'Your trusted source for premium heavy-duty semi truck and trailer parts.')); ?></p>
-                <div class="hero-actions">
-                    <a href="<?= BASE_URL; ?>/parts" class="btn btn-primary btn-large">Browse Parts</a>
-                    <a href="<?= BASE_URL; ?>/quote" class="btn btn-outline btn-large">Get a Quote</a>
+            </div>
+        </div>
+    <?php else: ?>
+        <!-- Default Hero if no banners -->
+        <div class="hero-slide active">
+            <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1920&q=80');"></div>
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="ph-fill ph-gear"></i>
+                    Premium Truck Parts
                 </div>
+                <h1>High-Quality Parts For Every Truck</h1>
+                <p>Browse our extensive inventory of premium heavy-duty semi truck and trailer parts.</p>
             </div>
         </div>
     <?php endif; ?>
@@ -712,69 +486,11 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-<!-- FEATURES SECTION (Overlapping Hero) -->
-<section class="features-section">
-    <div class="container">
-        <div class="features-grid">
-            <div class="feature-card animate-on-scroll">
-                <div class="feature-icon">
-                    <i class="ph ph-shield-check"></i>
-                </div>
-                <h3>OEM & Aftermarket</h3>
-                <p>Trusted OEM-grade and aftermarket options to meet different fleet budgets and timelines. Only the best quality for your rig.</p>
-            </div>
-            <div class="feature-card animate-on-scroll" style="transition-delay: 0.1s;">
-                <div class="feature-icon">
-                    <i class="ph ph-clock"></i>
-                </div>
-                <h3>Same-Day Pickup</h3>
-                <p>Over 10,000 fast-moving wear items and specialized components always in stock with local delivery available across our 3 locations.</p>
-            </div>
-            <div class="feature-card animate-on-scroll" style="transition-delay: 0.2s;">
-                <div class="feature-icon">
-                    <i class="ph ph-wrench"></i>
-                </div>
-                <h3>Fitment Experts</h3>
-                <p>Share your VIN, unit number, or part number and our team will verify the correct match. No guesswork, no returns.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- BRANDS MARQUEE -->
-<section class="brands-section">
-    <div class="container">
-        <div class="brands-title">Trusted Brands We Carry</div>
-    </div>
-    <div class="marquee-container">
-        <div class="marquee-content">
-            <!-- Duplicated for seamless loop -->
-            <h4>CUMMINS</h4>
-            <h4>PETERBILT</h4>
-            <h4>KENWORTH</h4>
-            <h4>FREIGHTLINER</h4>
-            <h4>VOLVO</h4>
-            <h4>MACK</h4>
-            <h4>BENDIX</h4>
-            <h4>MERITOR</h4>
-            
-            <h4>CUMMINS</h4>
-            <h4>PETERBILT</h4>
-            <h4>KENWORTH</h4>
-            <h4>FREIGHTLINER</h4>
-            <h4>VOLVO</h4>
-            <h4>MACK</h4>
-            <h4>BENDIX</h4>
-            <h4>MERITOR</h4>
-        </div>
-    </div>
-</section>
-
 <!-- CATEGORIES SECTION -->
 <?php if(!empty($categories)): ?>
 <section class="categories-section">
     <div class="container">
-        <h2 class="section-title animate-on-scroll">Parts For Every Component</h2>
+        <h2 class="section-title animate-on-scroll">Our Parts Inventory</h2>
         <div class="categories-grid">
             
             <?php foreach($categories as $index => $cat): ?>
@@ -792,6 +508,13 @@ document.addEventListener("DOMContentLoaded", function() {
             <?php endforeach; ?>
 
         </div>
+    </div>
+</section>
+<?php else: ?>
+<section class="categories-section">
+    <div class="container text-center">
+        <h2>Our Parts Inventory</h2>
+        <p>No parts categories available at the moment.</p>
     </div>
 </section>
 <?php endif; ?>
@@ -835,77 +558,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 
                 <a href="<?= BASE_URL; ?>/contact" class="btn btn-outline" style="color:var(--color-secondary); border-color:var(--color-secondary);">Contact Support</a>
             </div>
-        </div>
-    </div>
-</section>
-<?php endif; ?>
-
-<!-- TESTIMONIALS SECTION -->
-<?php if(!empty($testimonials)): ?>
-<section class="testimonials-section">
-    <div class="container">
-        <h2 class="section-title animate-on-scroll">Real Reviews From Real Customers</h2>
-        <div class="testimonials-slider-container animate-on-scroll">
-            <div class="testimonials-slider">
-                
-                <?php foreach($testimonials as $testimonial): ?>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <?php for($i=0; $i<$testimonial['stars']; $i++): ?>
-                            <i class="ph-fill ph-star"></i>
-                        <?php endfor; ?>
-                    </div>
-                    <p class="testimonial-text">"<?= htmlspecialchars($testimonial['content']); ?>"</p>
-                    <div class="testimonial-author">
-                        <?php $avatarImg = $testimonial['avatar'] ?: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=150&q=80'; ?>
-                        <img src="<?= htmlspecialchars((strpos($avatarImg, 'http') === 0) ? $avatarImg : BASE_URL.'/public/uploads/'.$avatarImg); ?>" alt="Customer" class="testimonial-avatar">
-                        <div class="testimonial-author-info">
-                            <h4><?= htmlspecialchars($testimonial['author_name']); ?></h4>
-                            <p><?= htmlspecialchars($testimonial['author_role']); ?></p>
-                        </div>
-                    </div>
-                </div>
-                <?php endforeach; ?>
-
-                <!-- Duplicate for seamless scrolling -->
-                <?php foreach($testimonials as $testimonial): ?>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <?php for($i=0; $i<$testimonial['stars']; $i++): ?>
-                            <i class="ph-fill ph-star"></i>
-                        <?php endfor; ?>
-                    </div>
-                    <p class="testimonial-text">"<?= htmlspecialchars($testimonial['content']); ?>"</p>
-                    <div class="testimonial-author">
-                        <?php $avatarImg = $testimonial['avatar'] ?: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=150&q=80'; ?>
-                        <img src="<?= htmlspecialchars((strpos($avatarImg, 'http') === 0) ? $avatarImg : BASE_URL.'/public/uploads/'.$avatarImg); ?>" alt="Customer" class="testimonial-avatar">
-                        <div class="testimonial-author-info">
-                            <h4><?= htmlspecialchars($testimonial['author_name']); ?></h4>
-                            <p><?= htmlspecialchars($testimonial['author_role']); ?></p>
-                        </div>
-                    </div>
-                </div>
-                <?php endforeach; ?>
-
-            </div>
-        </div>
-    </div>
-</section>
-<?php endif; ?>
-
-
-
-<!-- CALL TO ACTION -->
-<?php if(isset($cta_section) && $cta_section['is_active']): ?>
-<section class="cta-premium">
-    <div class="cta-pattern"></div>
-    <div class="container">
-        <div class="cta-content animate-on-scroll">
-            <h2><?= htmlspecialchars($cta_section['title']); ?></h2>
-            <p><?= nl2br(htmlspecialchars($cta_section['content'])); ?></p>
-            <a href="tel:<?= preg_replace('/[^0-9+]/', '', $settings['phone'] ?? '+18005550199'); ?>" class="btn btn-primary btn-large">
-                <i class="ph-fill ph-phone-call"></i> Call Us Now: <?= htmlspecialchars($settings['phone'] ?? '1-800-555-0199'); ?>
-            </a>
         </div>
     </div>
 </section>

@@ -83,9 +83,26 @@
     </div>
 </footer>
 
-<!-- Intersection Observer for Scroll Animations -->
+<!-- Intersection Observer for Scroll Animations and Navbar Effect -->
 <script>
 document.addEventListener("DOMContentLoaded", function() {
+    // Navbar scroll effect
+    const navbar = document.querySelector('.premium-nav');
+    if (navbar) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Check initial state
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        }
+    }
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {

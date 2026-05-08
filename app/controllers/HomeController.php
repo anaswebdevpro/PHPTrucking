@@ -52,6 +52,39 @@ class HomeController extends Controller {
         $this->view('about');
     }
 
+    public function parts() {
+        require_once '../app/models/SettingsModel.php';
+        require_once '../app/models/HeroBannerModel.php';
+        require_once '../app/models/SupportSectionModel.php';
+        require_once '../app/models/FaqModel.php';
+        require_once '../app/models/CategoryModel.php';
+
+        $settingsModel = new SettingsModel();
+        $settings = $settingsModel->getSettings();
+
+        $heroBannerModel = new HeroBannerModel();
+        $banners = $heroBannerModel->getActiveBanners();
+
+        $supportModel = new SupportSectionModel();
+        $supportSection = $supportModel->getSection();
+
+        $faqModel = new FaqModel();
+        $faqs = $faqModel->getActiveFaqs();
+
+        $categoryModel = new CategoryModel();
+        $categories = $categoryModel->getActiveCategories();
+
+        $data = [
+            'settings' => $settings,
+            'banners' => $banners,
+            'support_section' => $supportSection,
+            'faqs' => $faqs,
+            'categories' => $categories
+        ];
+
+        $this->view('parts', $data);
+    }
+
     public function contact() {
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             require_once '../app/models/ContactModel.php';

@@ -3,8 +3,7 @@
 require_once '../app/core/Controller.php';
 require_once '../app/models/AdminModel.php';
 require_once '../app/models/SettingsModel.php';
-require_once '../app/models/BannerModel.php';
-require_once '../app/models/SectionModel.php';
+
 require_once '../app/models/ServiceModel.php';
 require_once '../app/models/ContactModel.php';
 
@@ -12,12 +11,10 @@ class AdminController extends Controller {
 
     private $adminModel;
     private $settingsModel;
-    private $bannerModel;
 
     public function __construct() {
         $this->adminModel = new AdminModel();
         $this->settingsModel = new SettingsModel();
-        $this->bannerModel = new BannerModel();
     }
 
     public function login() {
