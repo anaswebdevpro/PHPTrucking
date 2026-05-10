@@ -17,8 +17,9 @@
         <br>
 
         <div>
-            <label>Background Image (Required)</label><br>
-            <input type="file" name="image" accept="image/*" required>
+            <label>Background Image or Video (Required)</label><br>
+            <small style="color:#64748b;">Supports: JPG, PNG, WEBP images or MP4, WEBM videos (16:9 recommended)</small><br>
+            <input type="file" name="image" accept="image/*,video/mp4,video/webm,video/ogg" required>
         </div>
         <br>
 

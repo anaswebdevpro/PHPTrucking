@@ -18,11 +18,20 @@
         <br>
 
         <div>
-            <label>Background Image (Leave blank to keep current)</label><br>
+            <label>Background Image or Video (Leave blank to keep current)</label><br>
+            <small style="color:#64748b;">Supports: JPG, PNG, WEBP images or MP4, WEBM videos (16:9 recommended)</small><br>
             <?php if($banner['image']): ?>
-                <img src="<?= htmlspecialchars((strpos($banner['image'], 'http') === 0) ? $banner['image'] : BASE_URL.'/public/uploads/'.$banner['image']); ?>" width="150" style="margin-bottom: 10px; border-radius: 4px;"><br>
+                <?php 
+                    $mediaExt = strtolower(pathinfo($banner['image'], PATHINFO_EXTENSION));
+                    $mediaSrc = (strpos($banner['image'], 'http') === 0) ? $banner['image'] : BASE_URL.'/public/uploads/'.$banner['image'];
+                ?>
+                <?php if(in_array($mediaExt, ['mp4', 'webm', 'ogg'])): ?>
+                    <video src="<?= htmlspecialchars($mediaSrc); ?>" width="250" style="margin-bottom: 10px; border-radius: 4px;" muted autoplay loop></video><br>
+                <?php else: ?>
+                    <img src="<?= htmlspecialchars($mediaSrc); ?>" width="150" style="margin-bottom: 10px; border-radius: 4px;"><br>
+                <?php endif; ?>
             <?php endif; ?>
-            <input type="file" name="image" accept="image/*">
+            <input type="file" name="image" accept="image/*,video/mp4,video/webm,video/ogg">
         </div>
         <br>
 

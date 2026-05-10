@@ -46,7 +46,23 @@
     transform: scale(1.05);
 }
 
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    filter: brightness(0.4) contrast(1.1);
+    transform: scale(1.05);
+}
+
 .hero-slide.active .hero-bg {
+    animation: slowZoom 20s infinite alternate;
+}
+
+.hero-slide.active .hero-video {
     animation: slowZoom 20s infinite alternate;
 }
 
@@ -155,100 +171,122 @@
 
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
 }
 
 .feature-card {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: var(--radius-lg);
-    padding: 40px 32px;
-    box-shadow: var(--shadow-lg);
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 40%, #cbd5e1 100%);
+    border: 1px solid #ffffff;
+    border-radius: var(--radius-md);
+    padding: 30px 24px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3), inset 0 2px 15px rgba(255,255,255,0.8);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    transition: transform var(--transition-normal);
 }
 
 .feature-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    transform: translateY(-5px);
+}
+
+.feature-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
 }
 
 .feature-icon {
-    width: 64px;
-    height: 64px;
-    background: var(--color-primary);
+    width: 32px;
+    height: 32px;
     color: var(--color-secondary);
-    border-radius: var(--radius-md);
+    border: 1.5px solid var(--color-secondary);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
-    margin-bottom: 24px;
+    font-size: 1.2rem;
+    flex-shrink: 0;
 }
 
 .feature-card h3 {
-    font-size: 1.4rem;
-    margin-bottom: 12px;
+    font-size: 1.1rem;
     color: var(--color-secondary);
+    margin: 0;
+    line-height: 1.3;
 }
 
 .feature-card p {
-    color: var(--text-muted);
-    line-height: 1.6;
+    color: #475569;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.learn-more {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-secondary);
+    text-transform: uppercase;
+}
+.learn-more:hover {
+    text-decoration: underline;
 }
 
 /* CATEGORIES SECTION */
 .categories-section {
     padding: 80px 0 120px;
-    background-color: var(--color-bg-light);
+    background-color: #ffffff;
+    background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
 }
 
 .categories-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 30px;
     margin-top: 50px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .category-card {
     position: relative;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     overflow: hidden;
-    height: 380px;
-    cursor: pointer;
+    background: var(--color-secondary);
+    height: 340px;
+    display: flex;
+    flex-direction: column;
     box-shadow: var(--shadow-md);
-    group: category;
 }
 
 .category-img {
     width: 100%;
-    height: 100%;
+    height: 280px;
     object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.category-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.4) 50%, rgba(15, 23, 42, 0.1) 100%);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 32px;
-    transition: background 0.4s ease;
+    padding: 0;
+    transition: transform 0.4s ease;
 }
 
 .category-card:hover .category-img {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
-.category-card:hover .category-overlay {
-    background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.5) 50%, rgba(15, 23, 42, 0.2) 100%);
+.category-title-bar {
+    background: #0f1524;
+    padding: 16px 20px;
+    margin-top: auto;
+}
+
+.category-title-bar h3 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin: 0;
+    text-align: left;
 }
 
 .category-number {
@@ -335,8 +373,8 @@
 /* BRAND LOGOS MARQUEE */
 .brands-section {
     padding: 60px 0;
-    background: white;
-    border-bottom: 1px solid #eee;
+    background: var(--color-bg-light);
+    border-bottom: 1px solid #e2e8f0;
     overflow: hidden;
 }
 
@@ -380,170 +418,260 @@
     100% { transform: translateX(-50%); }
 }
 
-/* SUPPORT SECTION */
+/* SUPPORT SECTION - FULL BLEED BACKGROUND */
 .support-section {
-    padding: 100px 0;
-    background: white;
+    position: relative;
+    padding: 0;
+    min-height: 600px;
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
 }
 
-.support-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
+.support-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center left;
+    z-index: 1;
+}
+
+.support-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(0,0,0,0.15) 0%, rgba(15,20,30,0.75) 40%, rgba(15,20,30,0.95) 60%, rgba(15,20,30,1) 80%);
+    z-index: 2;
+}
+
+.support-inner {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 80px 24px;
+    display: flex;
     align-items: center;
+    justify-content: flex-end;
+}
+
+.support-content {
+    max-width: 560px;
 }
 
 .support-content h2 {
     font-size: 2.5rem;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
+    color: var(--text-light);
+    line-height: 1.15;
+    text-transform: uppercase;
+    font-weight: 800;
 }
 
-.support-content p {
-    color: var(--text-muted);
-    font-size: 1.1rem;
-    margin-bottom: 30px;
+.support-content > p {
+    color: rgba(255,255,255,0.7);
+    font-size: 1rem;
+    margin-bottom: 35px;
+    line-height: 1.6;
 }
 
 .support-features {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
     margin-bottom: 40px;
 }
 
 .support-feature {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 16px;
+    padding: 16px 20px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.08);
 }
 
 .support-feature i {
-    font-size: 2rem;
+    font-size: 1.4rem;
     color: var(--color-primary);
-    background: var(--color-bg-light);
-    padding: 12px;
-    border-radius: var(--radius-md);
+    background: transparent;
+    padding: 10px;
+    border-radius: 50%;
+    border: 1.5px solid var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
 .support-feature h4 {
-    font-size: 1.2rem;
-    color: var(--color-secondary);
-    margin: 0;
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin: 0 0 4px 0;
+    font-weight: 700;
 }
 
 .support-feature p {
     margin: 0;
-    font-size: 0.95rem;
-    color: var(--text-muted);
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.5;
 }
 
-.support-image-container {
-    position: relative;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
+@media (max-width: 768px) {
+    .support-section {
+        min-height: auto;
+    }
+    .support-bg {
+        display: none;
+    }
+    .support-overlay {
+        background: var(--color-bg-dark);
+    }
+    .support-inner {
+        justify-content: center;
+    }
+    .support-content {
+        max-width: 100%;
+    }
 }
 
-.support-image-container img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: transform var(--transition-slow);
-}
-
-.support-image-container:hover img {
-    transform: scale(1.05);
-}
-
-/* TESTIMONIALS SECTION */
+/* TESTIMONIALS SECTION - NEW LAYOUT */
 .testimonials-section {
     padding: 100px 0;
-    background: var(--color-bg-light);
+    background: #111424; 
+    position: relative;
     overflow: hidden;
 }
 
-.testimonials-slider-container {
-    width: 100%;
-    overflow: hidden;
-    padding: 20px 0 40px;
+.test-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 50px;
 }
 
-.testimonials-slider {
+.test-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
     display: flex;
-    gap: 30px;
-    width: max-content;
-    animation: scroll-left 40s linear infinite;
+    flex-direction: column;
+    min-height: 550px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    transition: transform 0.3s ease;
 }
 
-.testimonials-slider:hover {
-    animation-play-state: paused;
-}
-
-@keyframes scroll-left {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-50% - 15px)); }
-}
-
-.testimonial-card {
-    min-width: 400px;
-    background: white;
-    padding: 40px;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-    border: 1px solid rgba(0,0,0,0.05);
-    transition: transform var(--transition-normal);
-}
-
-.testimonial-card:hover {
+.test-card:hover {
     transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
 }
 
-.testimonial-stars {
-    color: var(--color-primary);
-    font-size: 1.2rem;
-    margin-bottom: 20px;
+.test-bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 65%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.test-gradient {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+}
+
+.test-content {
+    position: relative;
+    z-index: 3;
+    padding: 40px 24px 24px;
     display: flex;
-    gap: 4px;
+    flex-direction: column;
+    margin-top: auto;
 }
 
-.testimonial-text {
-    font-size: 1.1rem;
-    color: var(--text-main);
-    font-style: italic;
-    margin-bottom: 24px;
-    line-height: 1.6;
-}
-
-.testimonial-author {
+.test-author {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
+    margin-bottom: 20px;
 }
 
-.testimonial-avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.testimonial-author-info h4 {
-    font-size: 1.1rem;
+.test-avatar-icon {
+    width: 32px;
+    height: 32px;
+    background: #ffffff;
     color: var(--color-secondary);
-    margin: 0 0 4px 0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
 }
 
-.testimonial-author-info p {
-    font-size: 0.9rem;
-    color: var(--text-muted);
+.test-author-text h4 {
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 700;
     margin: 0;
+}
+
+.test-author-text p {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+.test-quote {
+    color: #ffffff;
+    font-size: 1.4rem;
+    line-height: 1.3;
+    font-weight: 700;
+    margin: 0 0 30px 0;
+}
+
+.test-read-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 14px;
+    background: rgba(255,255,255,0.08);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background 0.2s ease;
+    margin-top: auto;
+}
+
+.test-read-btn:hover {
+    background: rgba(255,255,255,0.15);
+}
+
+@media (max-width: 1024px) {
+    .test-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 768px) {
+    .test-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* FAQ SECTION */
 .faq-section {
     padding: 100px 0;
-    background: white;
+    background: var(--color-bg-dark);
+}
+
+.faq-section .section-title {
+    color: var(--text-light);
 }
 
 .faq-container {
@@ -553,7 +681,7 @@
 
 .faq-item {
     margin-bottom: 16px;
-    border: 1px solid rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.1);
     border-radius: var(--radius-md);
     overflow: hidden;
 }
@@ -567,7 +695,7 @@
     font-size: 1.2rem;
     font-weight: 600;
     color: var(--color-secondary);
-    background: var(--color-bg-light);
+    background: var(--color-surface);
     cursor: pointer;
     list-style: none;
     display: flex;
@@ -592,16 +720,114 @@
 }
 
 .faq-item details[open] summary {
-    background: white;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    color: var(--text-light);
+    background: var(--color-surface-dark);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
 .faq-answer {
     padding: 24px;
-    background: white;
+    background: var(--color-surface-dark);
     color: var(--text-muted);
     line-height: 1.6;
     font-size: 1.05rem;
+}
+
+/* TIMELINE SECTION */
+.timeline-section {
+    padding: 100px 0;
+    background: #ffffff;
+    text-align: center;
+}
+
+.timeline-section h2 {
+    font-size: 2rem;
+    color: var(--color-secondary);
+    margin-bottom: 12px;
+}
+
+.timeline-section p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-bottom: 60px;
+}
+
+.timeline-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 60px auto 60px;
+    height: 300px;
+}
+
+.timeline-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #e2e8f0;
+    margin-top: -1px;
+    z-index: 1;
+    display: block;
+}
+
+.timeline-grid {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+.timeline-item {
+    position: relative;
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.timeline-dot {
+    width: 12px;
+    height: 12px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px #ffffff, 0 0 0 5px var(--color-primary);
+    z-index: 5;
+}
+
+.t-content {
+    position: absolute;
+    width: 200px;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffffff;
+    padding: 10px;
+}
+
+.top-text .t-content {
+    bottom: 30px;
+}
+
+.bottom-text .t-content {
+    top: 30px;
+}
+
+.t-content h4 {
+    font-size: 0.95rem;
+    color: var(--color-secondary);
+    margin-bottom: 6px;
+    font-weight: 700;
+}
+
+.t-content p {
+    font-size: 0.75rem;
+    color: #64748b;
+    line-height: 1.4;
 }
 
 @media (max-width: 768px) {
@@ -611,9 +837,8 @@
     .testimonial-card {
         min-width: 300px;
     }
-    
+    .timeline-container { display: none; }
 }
-
 </style>
 
 <!-- HERO SECTION -->
@@ -621,7 +846,19 @@
     <?php if(!empty($banners)): ?>
         <?php foreach($banners as $index => $banner): ?>
             <div class="hero-slide <?= $index === 0 ? 'active' : '' ?>">
-                <div class="hero-bg" style="background-image: url('<?= BASE_URL; ?>/public/uploads/<?= htmlspecialchars($banner['image']); ?>');"></div>
+                <?php 
+                    $heroMedia = !empty($banner['image']) ? $banner['image'] : 'engine_hero_bg.png';
+                    $mediaSrc = (strpos($heroMedia, 'http') === 0) ? $heroMedia : BASE_URL.'/public/uploads/'.$heroMedia;
+                    $mediaExt = strtolower(pathinfo($heroMedia, PATHINFO_EXTENSION));
+                    $isVideo = in_array($mediaExt, ['mp4', 'webm', 'ogg']);
+                ?>
+                <?php if($isVideo): ?>
+                    <video class="hero-video" autoplay muted loop playsinline>
+                        <source src="<?= htmlspecialchars($mediaSrc); ?>" type="video/<?= $mediaExt; ?>">
+                    </video>
+                <?php else: ?>
+                    <div class="hero-bg" style="background-image: url('<?= htmlspecialchars($mediaSrc); ?>');"></div>
+                <?php endif; ?>
                 <div class="hero-content">
                     <div class="hero-badge">
                         <i class="ph-fill ph-star"></i>
@@ -648,7 +885,19 @@
     <?php elseif(count($banners) > 0): ?>
         <!-- Single fallback using banners -->
         <div class="hero-slide active">
-            <div class="hero-bg" style="background-image: url('<?= htmlspecialchars((strpos($banners[0]['image'], 'http') === 0) ? $banners[0]['image'] : BASE_URL.'/public/uploads/'.$banners[0]['image']); ?>');"></div>
+            <?php 
+                $heroMedia = !empty($banners[0]['image']) ? $banners[0]['image'] : 'engine_hero_bg.png';
+                $mediaSrc = (strpos($heroMedia, 'http') === 0) ? $heroMedia : BASE_URL.'/public/uploads/'.$heroMedia;
+                $mediaExt = strtolower(pathinfo($heroMedia, PATHINFO_EXTENSION));
+                $isVideo = in_array($mediaExt, ['mp4', 'webm', 'ogg']);
+            ?>
+            <?php if($isVideo): ?>
+                <video class="hero-video" autoplay muted loop playsinline>
+                    <source src="<?= htmlspecialchars($mediaSrc); ?>" type="video/<?= $mediaExt; ?>">
+                </video>
+            <?php else: ?>
+                <div class="hero-bg" style="background-image: url('<?= htmlspecialchars($mediaSrc); ?>');"></div>
+            <?php endif; ?>
             <div class="hero-content">
                 <div class="hero-badge">
                     <i class="ph-fill ph-star"></i>
@@ -717,25 +966,28 @@ document.addEventListener("DOMContentLoaded", function() {
     <div class="container">
         <div class="features-grid">
             <div class="feature-card animate-on-scroll">
-                <div class="feature-icon">
-                    <i class="ph ph-shield-check"></i>
+                <div class="feature-header">
+                    <div class="feature-icon"><i class="ph ph-shield-check"></i></div>
+                    <h3>SUPERIOR COMPONENT<br>QUALITY</h3>
                 </div>
-                <h3>OEM & Aftermarket</h3>
-                <p>Trusted OEM-grade and aftermarket options to meet different fleet budgets and timelines. Only the best quality for your rig.</p>
+                <p>Top-tier components built to last. Trusted OEM-grade and aftermarket options to meet different fleet budgets and timelines.</p>
+                <a href="#" class="learn-more">Learn More &gt;</a>
             </div>
             <div class="feature-card animate-on-scroll" style="transition-delay: 0.1s;">
-                <div class="feature-icon">
-                    <i class="ph ph-clock"></i>
+                <div class="feature-header">
+                    <div class="feature-icon"><i class="ph ph-clock"></i></div>
+                    <h3>INSTANT PART<br>VISIBILITY</h3>
                 </div>
-                <h3>Same-Day Pickup</h3>
-                <p>Over 10,000 fast-moving wear items and specialized components always in stock with local delivery available across our 3 locations.</p>
+                <p>Over 10,000 fast-moving wear items and specialized components always in stock with real-time tracking across our 3 locations.</p>
+                <a href="#" class="learn-more">Learn More &gt;</a>
             </div>
             <div class="feature-card animate-on-scroll" style="transition-delay: 0.2s;">
-                <div class="feature-icon">
-                    <i class="ph ph-wrench"></i>
+                <div class="feature-header">
+                    <div class="feature-icon"><i class="ph ph-wrench"></i></div>
+                    <h3>EXPERT APPLICATION<br>ENGINE</h3>
                 </div>
-                <h3>Fitment Experts</h3>
                 <p>Share your VIN, unit number, or part number and our team will verify the correct match. No guesswork, no returns.</p>
+                <a href="#" class="learn-more">Learn More &gt;</a>
             </div>
         </div>
     </div>
@@ -771,123 +1023,182 @@ document.addEventListener("DOMContentLoaded", function() {
 </section>
 
 <!-- CATEGORIES SECTION -->
-<?php if(!empty($categories)): ?>
 <section class="categories-section">
     <div class="container">
         <h2 class="section-title animate-on-scroll">Parts For Every Component</h2>
         <div class="categories-grid">
             
-            <?php foreach($categories as $index => $cat): ?>
-            <div class="category-card animate-on-scroll" style="transition-delay: <?= ($index % 3) * 0.1 ?>s;">
-                <?php $catImg = $cat['image'] ?: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=1000&q=80'; ?>
-                <img src="<?= htmlspecialchars((strpos($catImg, 'http') === 0) ? $catImg : BASE_URL.'/public/uploads/'.$catImg); ?>" alt="<?= htmlspecialchars($cat['title']); ?>" class="category-img">
-                <div class="category-overlay">
-                    <span class="category-number"><?= sprintf("%02d", $index + 1); ?></span>
-                    <div class="category-content">
-                        <h3><?= htmlspecialchars($cat['title']); ?></h3>
-                        <p><?= htmlspecialchars($cat['description']); ?></p>
-                    </div>
+            <div class="category-card animate-on-scroll">
+                <img src="<?= BASE_URL; ?>/public/uploads/engine_3d_render.png" alt="Engine & Drivetrain" class="category-img">
+                <div class="category-title-bar">
+                    <h3>ENGINE & DRIVETRAIN</h3>
                 </div>
             </div>
-            <?php endforeach; ?>
+            
+            <div class="category-card animate-on-scroll" style="transition-delay: 0.1s;">
+                <img src="<?= BASE_URL; ?>/public/uploads/brakes_3d_render.png" alt="Brakes & Wheel End" class="category-img">
+                <div class="category-title-bar">
+                    <h3>BRAKES & WHEEL END</h3>
+                </div>
+            </div>
+            
+            <div class="category-card animate-on-scroll" style="transition-delay: 0.2s;">
+                <img src="<?= BASE_URL; ?>/public/uploads/suspension_3d_render.png" alt="Suspension & Chassis" class="category-img">
+                <div class="category-title-bar">
+                    <h3>SUSPENSION & CHASSIS</h3>
+                </div>
+            </div>
+            
+            <div class="category-card animate-on-scroll" style="transition-delay: 0.3s;">
+                <img src="<?= BASE_URL; ?>/public/uploads/brakes_3d_render.png" alt="Lighting & Electrical" class="category-img">
+                <div class="category-title-bar">
+                    <h3>LIGHTING & ELECTRICAL</h3>
+                </div>
+            </div>
 
         </div>
     </div>
 </section>
-<?php endif; ?>
 
 <!-- SUPPORT SECTION -->
 <?php if(isset($support_section) && $support_section['is_active']): ?>
+<?php 
+    $supportImage = !empty($support_section['image']) ? $support_section['image'] : 'technician_portrait.png';
+    $supportImgSrc = (strpos($supportImage, 'http') === 0) ? $supportImage : BASE_URL.'/public/uploads/'.$supportImage;
+?>
 <section class="support-section">
-    <div class="container">
-        <div class="support-grid">
-            <div class="support-image-container animate-on-scroll">
-                <?php $supportImage = $support_section['image'] ?: 'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=1000&q=80'; ?>
-                <img src="<?= htmlspecialchars((strpos($supportImage, 'http') === 0) ? $supportImage : BASE_URL.'/public/uploads/'.$supportImage); ?>" alt="Customer Support Agent">
-            </div>
-            <div class="support-content animate-on-scroll" style="transition-delay: 0.2s;">
-                <h2><?= htmlspecialchars($support_section['title']); ?></h2>
-                <p><?= nl2br(htmlspecialchars($support_section['content'])); ?></p>
-                
-                <div class="support-features">
-                    <div class="support-feature">
-                        <i class="ph-fill ph-headset"></i>
-                        <div>
-                            <h4>Expert Fitment Verification</h4>
-                            <p>We cross-reference your VIN or part number to ensure exact fit.</p>
-                        </div>
-                    </div>
-                    <div class="support-feature">
-                        <i class="ph-fill ph-truck"></i>
-                        <div>
-                            <h4>Nationwide Delivery Network</h4>
-                            <p>Fast, reliable delivery straight to your shop or depot.</p>
-                        </div>
-                    </div>
-                    <div class="support-feature">
-                        <i class="ph-fill ph-storefront"></i>
-                        <div>
-                            <h4>Local Pickup Available</h4>
-                            <p>Pick up parts on the same day at any of our 3 locations.</p>
-                        </div>
+    <div class="support-bg" style="background-image: url('<?= htmlspecialchars($supportImgSrc); ?>');"></div>
+    <div class="support-overlay"></div>
+    
+    <div class="support-inner">
+        <div class="support-content animate-on-scroll">
+            <h2><?= htmlspecialchars($support_section['title']); ?></h2>
+            <p><?= nl2br(htmlspecialchars($support_section['content'])); ?></p>
+            
+            <div class="support-features">
+                <div class="support-feature">
+                    <i class="ph-fill ph-headset"></i>
+                    <div>
+                        <h4>Expert Fitment & Notification</h4>
+                        <p>We cross-reference your VIN or part number to ensure exact fit, proactively notifying you of matching confirmations.</p>
                     </div>
                 </div>
-                
-                <a href="<?= BASE_URL; ?>/contact" class="btn btn-outline" style="color:var(--color-secondary); border-color:var(--color-secondary);">Contact Support</a>
+                <div class="support-feature">
+                    <i class="ph-fill ph-truck"></i>
+                    <div>
+                        <h4>Delivery Delivery with GPS</h4>
+                        <p>We accommodate traditional commercial and customized delivery services, always.</p>
+                    </div>
+                </div>
+                <div class="support-feature">
+                    <i class="ph-fill ph-storefront"></i>
+                    <div>
+                        <h4>Local Pickup Available</h4>
+                        <p>We don't pickup available to anywhere, currently your customers' doorstep.</p>
+                    </div>
+                </div>
             </div>
+            
+            <a href="<?= BASE_URL; ?>/contact" class="btn btn-primary btn-large">Contact Support</a>
         </div>
     </div>
 </section>
 <?php endif; ?>
+
+<!-- TIMELINE SECTION -->
+<section class="timeline-section">
+    <div class="container">
+        <h2 class="animate-on-scroll">FROM THE FOUNDRY TO THE ROAD</h2>
+        <p class="animate-on-scroll">Tracking quality in the essential early formation that puts your part quality to more automated and testability to the road.</p>
+        
+        <div class="timeline-container animate-on-scroll">
+            <div class="timeline-line"></div>
+            <div class="timeline-grid">
+                
+                <div class="timeline-item top-text">
+                    <div class="t-content">
+                        <h4>Overkum Service</h4>
+                        <p>We work responsibly from casting and hardbase materials onwards.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+
+                <div class="timeline-item bottom-text">
+                    <div class="timeline-dot"></div>
+                    <div class="t-content">
+                        <h4>Air Quality</h4>
+                        <p>The best air quality automation and discoverable tested traits.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item top-text">
+                    <div class="t-content">
+                        <h4>Quality Past Quality</h4>
+                        <p>Our standards foster outstanding execution for your unique quality.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+
+                <div class="timeline-item bottom-text">
+                    <div class="timeline-dot"></div>
+                    <div class="t-content">
+                        <h4>Conscionable to the Road</h4>
+                        <p>We test conscious profiling that aligns fun non-combustible profiles on our brakes.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item top-text">
+                    <div class="t-content">
+                        <h4>Steel Quality</h4>
+                        <p>We test affirmations with high-quality and tested road-wear quality.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- TESTIMONIALS SECTION -->
 <?php if(!empty($testimonials)): ?>
 <section class="testimonials-section">
     <div class="container">
-        <h2 class="section-title animate-on-scroll">Real Reviews From Real Customers</h2>
-        <div class="testimonials-slider-container animate-on-scroll">
-            <div class="testimonials-slider">
+        <h2 class="section-title animate-on-scroll" style="color: var(--text-light); margin-bottom: 10px;">Perfect fit for every journey</h2>
+        <p class="section-subtitle animate-on-scroll" style="color: rgba(255,255,255,0.7); text-align: center; max-width: 800px; margin: 0 auto 50px; font-size: 1.1rem; line-height: 1.6;">
+            Whether you work solo, with clients or with a team. Truckzone is incredibly flexible to fit your unique needs. Check out our partners showcased below for example, they all do a different kind of work in their own unique ways.
+        </p>
+
+        <div class="test-grid animate-on-scroll">
+            <?php foreach(array_slice($testimonials, 0, 3) as $index => $testimonial): ?>
+            <?php 
+                $avatarImg = $testimonial['avatar'] ?: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=600&q=80'; 
+                $imgSrc = (strpos($avatarImg, 'http') === 0) ? $avatarImg : BASE_URL.'/public/uploads/'.$avatarImg;
                 
-                <?php foreach($testimonials as $testimonial): ?>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <?php for($i=0; $i<$testimonial['stars']; $i++): ?>
-                            <i class="ph-fill ph-star"></i>
-                        <?php endfor; ?>
-                    </div>
-                    <p class="testimonial-text">"<?= htmlspecialchars($testimonial['content']); ?>"</p>
-                    <div class="testimonial-author">
-                        <?php $avatarImg = $testimonial['avatar'] ?: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=150&q=80'; ?>
-                        <img src="<?= htmlspecialchars((strpos($avatarImg, 'http') === 0) ? $avatarImg : BASE_URL.'/public/uploads/'.$avatarImg); ?>" alt="Customer" class="testimonial-avatar">
-                        <div class="testimonial-author-info">
+                $colors = ['#1e2335', '#5a2a3b', '#6b4e3d'];
+                $bgColor = $colors[$index % 3];
+            ?>
+            <div class="test-card" style="background-color: <?= $bgColor; ?>;">
+                <img src="<?= htmlspecialchars($imgSrc); ?>" alt="Customer" class="test-bg-img">
+                <div class="test-gradient" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 35%, <?= $bgColor; ?> 65%, <?= $bgColor; ?> 100%);"></div>
+                
+                <div class="test-content">
+                    <div class="test-author">
+                        <div class="test-avatar-icon">
+                            <i class="ph-fill ph-user"></i>
+                        </div>
+                        <div class="test-author-text">
                             <h4><?= htmlspecialchars($testimonial['author_name']); ?></h4>
                             <p><?= htmlspecialchars($testimonial['author_role']); ?></p>
                         </div>
                     </div>
+                    
+                    <h3 class="test-quote">"<?= htmlspecialchars($testimonial['content']); ?>"</h3>
+                    
+                    <a href="#" class="test-read-btn">Read Story <i class="ph ph-arrow-up-right"></i></a>
                 </div>
-                <?php endforeach; ?>
-
-                <!-- Duplicate for seamless scrolling -->
-                <?php foreach($testimonials as $testimonial): ?>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <?php for($i=0; $i<$testimonial['stars']; $i++): ?>
-                            <i class="ph-fill ph-star"></i>
-                        <?php endfor; ?>
-                    </div>
-                    <p class="testimonial-text">"<?= htmlspecialchars($testimonial['content']); ?>"</p>
-                    <div class="testimonial-author">
-                        <?php $avatarImg = $testimonial['avatar'] ?: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=150&q=80'; ?>
-                        <img src="<?= htmlspecialchars((strpos($avatarImg, 'http') === 0) ? $avatarImg : BASE_URL.'/public/uploads/'.$avatarImg); ?>" alt="Customer" class="testimonial-avatar">
-                        <div class="testimonial-author-info">
-                            <h4><?= htmlspecialchars($testimonial['author_name']); ?></h4>
-                            <p><?= htmlspecialchars($testimonial['author_role']); ?></p>
-                        </div>
-                    </div>
-                </div>
-                <?php endforeach; ?>
-
             </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>

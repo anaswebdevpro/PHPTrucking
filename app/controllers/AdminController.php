@@ -137,7 +137,7 @@ class AdminController extends Controller {
             
             if(isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
                 $ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
-                if(in_array($ext, ['jpg', 'jpeg', 'png', 'webp'])) {
+                if(in_array($ext, ['jpg', 'jpeg', 'png', 'webp', 'mp4', 'webm', 'ogg'])) {
                     $image = time() . '_' . uniqid() . '.' . $ext;
                     move_uploaded_file($_FILES['image']['tmp_name'], dirname(__DIR__, 2) . '/public/uploads/' . $image);
                 }
@@ -163,7 +163,7 @@ class AdminController extends Controller {
             
             if(isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
                 $ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
-                if(in_array($ext, ['jpg', 'jpeg', 'png', 'webp'])) {
+                if(in_array($ext, ['jpg', 'jpeg', 'png', 'webp', 'mp4', 'webm', 'ogg'])) {
                     $newImage = time() . '_' . uniqid() . '.' . $ext;
                     move_uploaded_file($_FILES['image']['tmp_name'], dirname(__DIR__, 2) . '/public/uploads/' . $newImage);
                     $image = $newImage;

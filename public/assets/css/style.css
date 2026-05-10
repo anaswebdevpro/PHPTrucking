@@ -4,20 +4,20 @@
 
 :root {
   /* Colors */
-  --color-primary: #ffc107;      /* Vibrant Industrial Yellow */
-  --color-primary-dark: #e0a800;
-  --color-secondary: #0f172a;    /* Deep Slate Blue (Dark) */
-  --color-tertiary: #1e293b;     /* Lighter Slate */
-  --color-accent: #3b82f6;       /* Blue Accent for links/active */
+  --color-primary: #b87a32;      /* Copper/Amber from screenshot */
+  --color-primary-dark: #965f24;
+  --color-secondary: #161c28;    /* Dark navy blue for footer, cards, support */
+  --color-tertiary: #1f2838;     /* Lighter navy */
+  --color-accent: #3b82f6;       
   
-  --color-bg-dark: #0b0f19;      /* Background Dark */
-  --color-bg-light: #f8fafc;     /* Background Light */
-  --color-surface: #ffffff;      /* Surface Light */
-  --color-surface-dark: #1e293b; /* Surface Dark */
+  --color-bg-dark: #161c28;      /* Deep navy */
+  --color-bg-light: #ffffff;     /* White for main body */
+  --color-surface: #ffffff;      /* Surface for light cards */
+  --color-surface-dark: #161c28; /* Surface for dark cards */
   
-  --text-main: #334155;
+  --text-main: #334155;          /* Dark gray text for light bg */
   --text-muted: #64748b;
-  --text-light: #f8fafc;
+  --text-light: #ffffff;         /* White text for dark bg */
   
   /* Typography */
   --font-heading: 'Outfit', sans-serif;
@@ -54,6 +54,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  scroll-padding-top: 100px;
 }
 
 body {
@@ -70,7 +71,9 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 800;
   line-height: 1.2;
-  color: var(--color-secondary);
+  color: var(--text-light);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 a {
@@ -139,6 +142,7 @@ img {
 }
 
 .section-title {
+  color: var(--text-main);
   text-align: center;
   font-size: 2.5rem;
   margin-bottom: 3rem;
@@ -173,10 +177,10 @@ img {
 }
 
 .premium-nav.scrolled {
-  background: rgba(15, 23, 42, 0.95);
+  background: rgba(7, 10, 18, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   padding: 15px 0;
   box-shadow: var(--shadow-md);
 }
