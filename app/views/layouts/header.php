@@ -21,6 +21,7 @@ $metaDesc = $metaDesc ?? "Professional trucking, logistics, and heavy-duty parts
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <link rel="stylesheet" href="<?= BASE_URL; ?>/public/assets/css/style.css">
+    <link rel="stylesheet" href="<?= BASE_URL; ?>/public/assets/css/immersive-truck.css">
 </head>
 
 <body>
@@ -38,7 +39,7 @@ $metaDesc = $metaDesc ?? "Professional trucking, logistics, and heavy-duty parts
             <?php endif; ?>
 
             <?php if($branding === 'text' || $branding === 'both' || !$hasLogo): ?>
-                <i class="ph-fill ph-truck"></i>
+                <!-- <i class="ph-fill ph-truck"></i> -->
                 <span><?= htmlspecialchars($settings['site_name'] ?? 'TRUCKZONE'); ?></span>
             <?php endif; ?>
         </a>

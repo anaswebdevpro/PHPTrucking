@@ -112,24 +112,24 @@
     border-radius: 50px;
     font-size: 0.9rem;
     font-weight: 600;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     color: var(--color-primary);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
 .hero h1 {
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-size: clamp(2rem, 5vw, 4rem);
     color: var(--text-light);
-    margin-bottom: 24px;
-    line-height: 1.1;
+    margin-bottom: 16px;
+    line-height: 1.05;
     text-shadow: 0 4px 20px rgba(0,0,0,0.5);
 }
 
 .hero p {
-    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    font-size: clamp(1rem, 2vw, 1.25rem);
     color: rgba(255, 255, 255, 0.85);
-    margin-bottom: 40px;
+    margin-bottom: 24px;
     max-width: 700px;
 }
 

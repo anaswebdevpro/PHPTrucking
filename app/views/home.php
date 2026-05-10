@@ -128,24 +128,24 @@
     border-radius: 50px;
     font-size: 0.9rem;
     font-weight: 600;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     color: var(--color-primary);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
 .hero h1 {
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-size: clamp(2rem, 5vw, 4rem);
     color: var(--text-light);
-    margin-bottom: 24px;
-    line-height: 1.1;
+    margin-bottom: 16px;
+    line-height: 1.05;
     text-shadow: 0 4px 20px rgba(0,0,0,0.5);
 }
 
 .hero p {
-    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    font-size: clamp(1rem, 2vw, 1.25rem);
     color: rgba(255, 255, 255, 0.85);
-    margin-bottom: 40px;
+    margin-bottom: 24px;
     max-width: 700px;
 }
 
@@ -862,7 +862,7 @@
                 <div class="hero-content">
                     <div class="hero-badge">
                         <i class="ph-fill ph-star"></i>
-                        Top Rated Parts Supplier
+                        Top Rated Trasport Services                            
                     </div>
                     <h1><?= htmlspecialchars($banner['title']); ?></h1>
                     <p><?= nl2br(htmlspecialchars($sections['hero']['content'] ?? 'Your trusted source for premium heavy-duty semi truck and trailer parts.')); ?></p>
@@ -901,7 +901,7 @@
             <div class="hero-content">
                 <div class="hero-badge">
                     <i class="ph-fill ph-star"></i>
-                    Top Rated Parts Supplier
+                    Top Rated Transport Service
                 </div>
                 <h1><?= htmlspecialchars($banners[0]['title']); ?></h1>
                 <p><?= nl2br(htmlspecialchars($banners[0]['subtitle'] ?? 'Your trusted source for premium heavy-duty semi truck and trailer parts.')); ?></p>
@@ -1025,32 +1025,32 @@ document.addEventListener("DOMContentLoaded", function() {
 <!-- CATEGORIES SECTION -->
 <section class="categories-section">
     <div class="container">
-        <h2 class="section-title animate-on-scroll">Parts For Every Component</h2>
+        <h2 class="section-title animate-on-scroll">Services We Offer</h2>
         <div class="categories-grid">
             
             <div class="category-card animate-on-scroll">
-                <img src="<?= BASE_URL; ?>/public/uploads/engine_3d_render.png" alt="Engine & Drivetrain" class="category-img">
+                <img src="<?= BASE_URL; ?>/public/uploads/medium-shot-man-carrying-box.jpg" alt="Engine & Drivetrain" class="category-img">
                 <div class="category-title-bar">
-                    <h3>ENGINE & DRIVETRAIN</h3>
+                    <h3>Storage Service</h3>
                 </div>
             </div>
             
             <div class="category-card animate-on-scroll" style="transition-delay: 0.1s;">
-                <img src="<?= BASE_URL; ?>/public/uploads/brakes_3d_render.png" alt="Brakes & Wheel End" class="category-img">
+                <img src="<?= BASE_URL; ?>/public/uploads/refrigerated-controlled-transport.jpg" alt="Brakes & Wheel End" class="category-img">
                 <div class="category-title-bar">
-                    <h3>BRAKES & WHEEL END</h3>
+                    <h3>Refrigerated Controlled Transport</h3>
                 </div>
             </div>
-            
+
             <div class="category-card animate-on-scroll" style="transition-delay: 0.2s;">
-                <img src="<?= BASE_URL; ?>/public/uploads/suspension_3d_render.png" alt="Suspension & Chassis" class="category-img">
+                <img src="<?= BASE_URL; ?>/public/uploads/ftl-transportation.jpg" alt="Suspension & Chassis" class="category-img">
                 <div class="category-title-bar">
-                    <h3>SUSPENSION & CHASSIS</h3>
+                    <h3>Flatbed Trucking</h3>
                 </div>
             </div>
             
             <div class="category-card animate-on-scroll" style="transition-delay: 0.3s;">
-                <img src="<?= BASE_URL; ?>/public/uploads/brakes_3d_render.png" alt="Lighting & Electrical" class="category-img">
+                <img src="<?= BASE_URL; ?>/public/uploads/flatbed-trucking.jpg" alt="Lighting & Electrical" class="category-img">
                 <div class="category-title-bar">
                     <h3>LIGHTING & ELECTRICAL</h3>
                 </div>
@@ -1104,6 +1104,9 @@ document.addEventListener("DOMContentLoaded", function() {
     </div>
 </section>
 <?php endif; ?>
+
+<!-- IMMERSIVE TRUCK SECTION -->
+<?php include __DIR__ . '/components/immersive-truck.php'; ?>
 
 <!-- TIMELINE SECTION -->
 <section class="timeline-section">
@@ -1244,5 +1247,8 @@ document.addEventListener("DOMContentLoaded", function() {
     </div>
 </section>
 <?php endif; ?>
+
+<!-- Immersive Truck Script -->
+<script src="<?= BASE_URL; ?>/public/assets/js/immersive-truck.js" data-base-url="<?= BASE_URL; ?>" defer></script>
 
 <?php require_once '../app/views/layouts/footer.php'; ?>

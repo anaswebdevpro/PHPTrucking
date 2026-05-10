@@ -395,7 +395,7 @@ document.body.classList.add('login-page');
                          style="height: 48px; object-fit: contain;">
                 <?php endif; ?>
                 <?php if($branding === 'text' || $branding === 'both' || !$hasLogo): ?>
-                    <i class="ph-fill ph-truck"></i>
+                    <!-- <i class="ph-fill ph-truck"></i> -->
                     <span><?= htmlspecialchars($settings['site_name'] ?? 'TruckMania'); ?></span>
                 <?php endif; ?>
             </a>
