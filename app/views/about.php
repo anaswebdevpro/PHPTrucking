@@ -168,7 +168,7 @@
             <i class="ph-fill ph-info"></i>
             Our Story
         </div>
-        <h1>About TruckZone</h1>
+        <h1>About Transportation Corporation of Canada</h1>
         <p>Dedicated to keeping the trucking industry moving forward with premium parts and unmatched expertise.</p>
     </div>
 </section>
@@ -179,7 +179,7 @@
         <div class="about-grid">
             <div class="about-content animate-on-scroll">
                 <h2>A Legacy of Reliability</h2>
-                <p>Founded with a vision to provide the highest quality heavy-duty truck and trailer parts, TruckZone has grown into a leading supplier trusted by fleets across the country. Our deep understanding of the transportation industry allows us to anticipate the needs of our customers and provide solutions that keep them on the road.</p>
+                <p>Founded with a vision to provide the highest quality heavy-duty truck and trailer parts, Transportation Corporation of Canada has grown into a leading supplier trusted by fleets across the country. Our deep understanding of the transportation industry allows us to anticipate the needs of our customers and provide solutions that keep them on the road.</p>
                 <p>We believe that downtime is the enemy of progress. That's why we maintain an extensive inventory of over 10,000 active SKUs, ensuring that when you need a critical component, we have it ready for immediate pickup or delivery.</p>
                 <p>Our team of fitment experts brings decades of combined experience. We don't just sell parts; we provide the technical knowledge necessary to ensure you get the exact match for your specific rig, the first time.</p>
             </div>

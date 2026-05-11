@@ -212,7 +212,7 @@
                     <i class="ph-fill ph-envelope-simple"></i>
                     <div>
                         <h4>Email Address</h4>
-                        <p><?= htmlspecialchars($settings['email'] ?? 'info@truckzone.ca'); ?></p>
+                        <p><?= htmlspecialchars($settings['email'] ?? 'info@transportationcorporationofcanada.ca'); ?></p>
                     </div>
                 </div>
                 

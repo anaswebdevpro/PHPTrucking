@@ -22,8 +22,8 @@ class Router {
                 $homeController->about();
                 break;
 
-            case 'parts':
-                $homeController->parts();
+            case 'transportation':
+                $homeController->transportation();
                 break;
 
             case 'contact':

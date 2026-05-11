@@ -9,12 +9,12 @@
                     ?>
                     
                     <?php if(($branding === 'logo' || $branding === 'both') && $hasLogo): ?>
-                        <img src="<?= BASE_URL; ?>/public/uploads/<?= htmlspecialchars($settings['logo']); ?>" alt="<?= htmlspecialchars($settings['site_name'] ?? 'TRUCKZONE'); ?>" style="height: 50px; margin-right: 10px;">
+                        <img src="<?= BASE_URL; ?>/public/uploads/<?= htmlspecialchars($settings['logo']); ?>" alt="<?= htmlspecialchars($settings['site_name'] ?? 'Transportation Corporation of Canada'); ?>" style="height: 50px; margin-right: 10px;">
                     <?php endif; ?>
 
                     <?php if($branding === 'text' || $branding === 'both' || !$hasLogo): ?>
                         <i class="ph-fill ph-truck"></i>
-                        <span><?= htmlspecialchars($settings['site_name'] ?? 'TRUCKZONE'); ?></span>
+                        <span><?= htmlspecialchars($settings['site_name'] ?? 'Transportation Corporation of Canada'); ?></span>
                     <?php endif; ?>
                 </a>
                 <p>Your trusted source for premium heavy-duty semi truck and trailer parts. Keeping fleets moving across the country with reliable parts and expert service.</p>
@@ -68,13 +68,13 @@
                 </div>
                 <div class="footer-contact-item">
                     <i class="ph-fill ph-envelope-simple"></i>
-                    <span><?= htmlspecialchars($settings['email'] ?? 'info@truckzone.ca'); ?></span>
+                    <span><?= htmlspecialchars($settings['email'] ?? 'info@transportationcorporationofcanada.ca'); ?></span>
                 </div>
             </div>
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; <?= date('Y'); ?> <?= htmlspecialchars($settings['site_name'] ?? 'Truck Zone'); ?>. All Rights Reserved.</p>
+            <p>&copy; <?= date('Y'); ?> <?= htmlspecialchars($settings['site_name'] ?? 'Transportation corporation of canada'); ?>. All Rights Reserved.</p>
             <div class="footer-legal">
                 <a href="<?= BASE_URL; ?>/privacy">Privacy Policy</a>
                 <a href="<?= BASE_URL; ?>/terms">Terms of Service</a>

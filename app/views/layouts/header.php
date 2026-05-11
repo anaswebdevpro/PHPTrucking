@@ -35,18 +35,18 @@ $metaDesc = $metaDesc ?? "Professional trucking, logistics, and heavy-duty parts
             ?>
             
             <?php if(($branding === 'logo' || $branding === 'both') && $hasLogo): ?>
-                <img src="<?= BASE_URL; ?>/public/uploads/<?= htmlspecialchars($settings['logo']); ?>" alt="<?= htmlspecialchars($settings['site_name'] ?? 'TRUCKZONE'); ?>" style="height: 40px; margin-right: 10px;">
+                <img src="<?= BASE_URL; ?>/public/uploads/<?= htmlspecialchars($settings['logo']); ?>" alt="<?= htmlspecialchars($settings['site_name'] ?? 'Transportation Corporation of Canada'); ?>" style="height: 40px; margin-right: 10px;">
             <?php endif; ?>
 
             <?php if($branding === 'text' || $branding === 'both' || !$hasLogo): ?>
                 <!-- <i class="ph-fill ph-truck"></i> -->
-                <span><?= htmlspecialchars($settings['site_name'] ?? 'TRUCKZONE'); ?></span>
+                <span><?= htmlspecialchars($settings['site_name'] ?? 'Transportation Corporation of Canada'); ?></span>
             <?php endif; ?>
         </a>
         
         <div class="nav-links">
             <a href="<?= BASE_URL; ?>/">Home</a>
-            <a href="<?= BASE_URL; ?>/parts">Parts</a>
+            <a href="<?= BASE_URL; ?>/transportation">Transportation</a>
             <a href="<?= BASE_URL; ?>/services">Services</a>
             <a href="<?= BASE_URL; ?>/about">About</a>
             <a href="<?= BASE_URL; ?>/contact">Contact</a>
@@ -75,10 +75,10 @@ $metaDesc = $metaDesc ?? "Professional trucking, logistics, and heavy-duty parts
         <div class="mobile-drawer-header">
             <a href="<?= BASE_URL; ?>/" class="logo">
                 <?php if(($branding === 'logo' || $branding === 'both') && $hasLogo): ?>
-                    <img src="<?= BASE_URL; ?>/public/uploads/<?= htmlspecialchars($settings['logo']); ?>" alt="<?= htmlspecialchars($settings['site_name'] ?? 'TRUCKZONE'); ?>" style="height: 35px;">
+                    <img src="<?= BASE_URL; ?>/public/uploads/<?= htmlspecialchars($settings['logo']); ?>" alt="<?= htmlspecialchars($settings['site_name'] ?? 'Transportation Corporation of Canada'); ?>" style="height: 35px;">
                 <?php else: ?>
                     <i class="ph-fill ph-truck"></i>
-                    <span style="font-size:1.3rem;"><?= htmlspecialchars($settings['site_name'] ?? 'TRUCKZONE'); ?></span>
+                    <span style="font-size:1.3rem;"><?= htmlspecialchars($settings['site_name'] ?? 'Transportation Corporation of Canada'); ?></span>
                 <?php endif; ?>
             </a>
             <button class="mobile-drawer-close" id="drawer-close" aria-label="Close menu">
@@ -88,7 +88,7 @@ $metaDesc = $metaDesc ?? "Professional trucking, logistics, and heavy-duty parts
 
         <nav class="mobile-drawer-links">
             <a href="<?= BASE_URL; ?>/"><i class="ph-fill ph-house"></i> Home</a>
-            <a href="<?= BASE_URL; ?>/parts"><i class="ph-fill ph-gear"></i> Parts</a>
+            <a href="<?= BASE_URL; ?>/transportation"><i class="ph-fill ph-truck"></i> Transportation</a>
             <a href="<?= BASE_URL; ?>/services"><i class="ph-fill ph-wrench"></i> Services</a>
             <a href="<?= BASE_URL; ?>/about"><i class="ph-fill ph-info"></i> About</a>
             <a href="<?= BASE_URL; ?>/contact"><i class="ph-fill ph-envelope"></i> Contact</a>

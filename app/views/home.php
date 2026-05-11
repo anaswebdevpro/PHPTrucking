@@ -839,6 +839,348 @@
     }
     .timeline-container { display: none; }
 }
+
+/* AL FEATURE SECTION */
+.al-feature-section {
+    margin: 10vh 0;
+    position: relative;
+    width: 100%;
+    min-height: 800px;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 60px 0;
+}
+
+.al-feature-bg-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(35% 0, 85% 0, 100% 50%, 85% 100%, 35% 100%, 50% 50%);
+    z-index: 1;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);  
+}
+
+.al-feature-bg {
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
+    background-image: url('<?= BASE_URL; ?>/public/uploads/road.png');
+    background-size: cover;
+    background-position: center;
+    /* opacity: 0.4; */
+    animation: alSlowZoom 25s infinite alternate ease-in-out;
+}
+
+.al-feature-truck-3d {
+    position: absolute;
+    top: 50%;
+    left: 68%;
+    transform: translate(-50%, -45%);
+    width: 55%;
+    max-width: 900px;
+    z-index: 2;
+    filter: drop-shadow(-20px 30px 25px rgba(0,0,0,0.5));
+    opacity: 0;
+    animation: alTruckEntrance 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards, alTruckPopOut 6s ease-in-out infinite 1.5s;
+    pointer-events: none;
+}
+
+@keyframes alTruckEntrance {
+    from {
+        opacity: 0;
+        transform: translate(-30%, -45%) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -45%) scale(1);
+    }
+}
+
+@keyframes alTruckPopOut {
+    0%, 100% { transform: translate(-50%, -45%) scale(1); filter: drop-shadow(-20px 30px 25px rgba(0,0,0,0.5)); }
+    50% { transform: translate(-50%, -48%) scale(1.02); filter: drop-shadow(-30px 40px 35px rgba(0,0,0,0.35)); }
+}
+
+@keyframes alSlowZoom {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.15); }
+}
+
+@keyframes alFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.al-animate-fade {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.al-animate-fade.visible {
+    animation: alFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.al-delay-1 { animation-delay: 0.15s; }
+.al-delay-2 { animation-delay: 0.3s; }
+
+.al-feature-container {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 1400px;
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-between;
+    height: 80vh;
+    padding: 0 24px;
+    pointer-events: none;
+}
+
+.al-left, .al-right {
+    pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.al-left {
+    width: 35%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.al-right {
+    width: 25%;
+    align-items: flex-end;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    justify-content: space-between;
+}
+
+.al-logo {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 120px;
+    letter-spacing: 2px;
+}
+
+.al-logo i {
+    color: #387b8f;
+    font-size: 1.4rem;
+}
+
+.al-text-content {
+    margin-bottom: 80px;
+}
+
+.al-title {
+    color: #387b8f;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.al-subtitle {
+    color: #64748b;
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+}
+
+.al-heading {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.1;
+    margin-bottom: 30px;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+}
+
+.al-desc {
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    max-width: 95%;
+}
+
+.al-desc strong {
+    color: #0f172a;
+    font-weight: 600;
+}
+
+.al-links {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: auto;
+}
+
+.al-link-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #64748b;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: color 0.3s;
+    width: fit-content;
+}
+
+.al-link-item:hover {
+    color: #387b8f;
+}
+
+.al-link-item .al-line {
+    width: 30px;
+    height: 1px;
+    background-color: #cbd5e1;
+    transition: width 0.3s, background-color 0.3s;
+}
+
+.al-link-item:hover .al-line {
+    width: 45px;
+    background-color: #387b8f;
+}
+
+.al-menu-icon {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.al-menu-icon span {
+    display: block;
+    width: 30px;
+    height: 2px;
+    background-color: #64748b;
+    transition: width 0.3s, background-color 0.3s;
+}
+
+.al-menu-icon span:last-child {
+    width: 20px;
+    align-self: flex-end;
+}
+
+.al-menu-icon:hover span {
+    background-color: #0f172a;
+}
+.al-menu-icon:hover span:last-child {
+    width: 30px;
+}
+
+.al-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: auto;
+    margin-bottom: 120px;
+}
+
+.al-nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #94a3b8;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.al-nav-item:hover {
+    color: #1e293b;
+}
+
+.al-nav-item .al-line {
+    width: 30px;
+    height: 1px;
+    background-color: #e2e8f0;
+    transition: width 0.3s, background-color 0.3s;
+}
+
+.al-nav-item:hover .al-line {
+    width: 45px;
+    background-color: #1e293b;
+}
+
+.al-copyright {
+    font-size: 0.7rem;
+    color: #94a3b8;
+    text-align: right;
+    letter-spacing: 0.5px;
+}
+
+@media (max-width: 1024px) {
+    .al-feature-section {
+        flex-direction: column;
+        padding: 100px 0 40px;
+    }
+    .al-feature-bg-wrapper {
+        clip-path: none;
+        opacity: 0.05;
+    }
+    .al-feature-truck-3d {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        width: 90%;
+        animation: none;
+        filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));
+        margin: 20px auto;
+        opacity: 1;
+    }
+    .al-feature-container {
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 40px 24px;
+        height: auto;
+    }
+    .al-left {
+        width: 100%;
+        margin-bottom: 40px;
+    }
+    .al-right {
+        width: 100%;
+        align-items: flex-start;
+        padding-top: 0;
+    }
+    .al-nav-item {
+        justify-content: flex-start;
+        flex-direction: row-reverse;
+    }
+    .al-copyright {
+        text-align: left;
+        margin-top: 40px;
+    }
+    .al-menu-icon {
+        display: none;
+    }
+}
 </style>
 
 <!-- HERO SECTION -->
@@ -993,6 +1335,7 @@ document.addEventListener("DOMContentLoaded", function() {
     </div>
 </section>
 
+
 <!-- BRANDS MARQUEE -->
 <section class="brands-section">
     <div class="container">
@@ -1105,6 +1448,67 @@ document.addEventListener("DOMContentLoaded", function() {
 </section>
 <?php endif; ?>
 
+<!-- AL FEATURE SECTION -->
+<section class="al-feature-section">
+    <div class="al-feature-bg-wrapper">
+        <div class="al-feature-bg"></div>
+    </div>
+    
+    <!-- 3D Pop-out Truck Image -->
+    <img src="<?= BASE_URL; ?>/public/uploads/feature_truck.png" class="al-feature-truck-3d" alt="Premium Truck Logistics">
+
+    <div class="al-feature-container">
+        <!-- Left Side -->
+        <div class="al-left">
+            <!-- <div class="al-logo al-animate-fade">
+                <i class="ph-fill ph-truck"></i> Transportation corporation of canada
+            </div> -->
+            <div class="al-text-content al-animate-fade al-delay-1">
+                <h3 class="al-title">Seamless logistics</h3>
+                <p class="al-subtitle">and secure warehousing for</p>
+                <h2 class="al-heading">your supply chain.</h2>
+                <p class="al-desc">
+                    Transportation corporation of canada provides comprehensive transportation and warehouse services across North America. Our dedicated team ensures your freight is handled with efficiency and care, offering end-to-end logistics solutions tailored to your business needs.
+                </p>
+            </div>
+            <div class="al-links al-animate-fade al-delay-2">
+                <div class="al-link-item"><span class="al-line"></span> OUR SERVICES</div>
+                <div class="al-link-item"><span class="al-line"></span> WAREHOUSE LOCATIONS</div>
+            </div>
+        </div>
+        
+        <!-- Right Side -->
+        <div class="al-right">
+            <div class="al-menu-icon al-animate-fade">
+                <span></span>
+                <span></span>
+            </div>
+            <!-- <div class="al-nav-links al-animate-fade al-delay-1">
+                <div class="al-nav-item">OUR OFFICES <span class="al-line"></span></div>
+                <div class="al-nav-item">NEWS <span class="al-line"></span></div>
+                <div class="al-nav-item">CAREERS <span class="al-line"></span></div>
+            </div>
+            <div class="al-copyright al-animate-fade al-delay-2">
+                &copy; Transportation corporation of canada Transportation &nbsp;|&nbsp; Terms & Legal
+            </div> -->
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const alObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                alObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.al-animate-fade').forEach(el => alObserver.observe(el));
+});
+</script>
+
 <!-- IMMERSIVE TRUCK SECTION -->
 <?php include __DIR__ . '/components/immersive-truck.php'; ?>
 
@@ -1169,7 +1573,7 @@ document.addEventListener("DOMContentLoaded", function() {
     <div class="container">
         <h2 class="section-title animate-on-scroll" style="color: var(--text-light); margin-bottom: 10px;">Perfect fit for every journey</h2>
         <p class="section-subtitle animate-on-scroll" style="color: rgba(255,255,255,0.7); text-align: center; max-width: 800px; margin: 0 auto 50px; font-size: 1.1rem; line-height: 1.6;">
-            Whether you work solo, with clients or with a team. Truckzone is incredibly flexible to fit your unique needs. Check out our partners showcased below for example, they all do a different kind of work in their own unique ways.
+            Whether you work solo, with clients or with a team. Transportation Corporation of Canada is incredibly flexible to fit your unique needs. Check out our partners showcased below for example, they all do a different kind of work in their own unique ways.
         </p>
 
         <div class="test-grid animate-on-scroll">

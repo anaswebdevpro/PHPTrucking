@@ -49,7 +49,7 @@
             <div class="immersive-overlay">
                 <span class="immersive-tagline">Your Trusted Partner</span>
                 <h2 class="immersive-headline">The Road<br>Starts Here</h2>
-                <p class="immersive-subtext">Premium parts. Unmatched expertise. One destination — TruckZone.</p>
+                <p class="immersive-subtext">Premium parts. Unmatched expertise. One destination — Transportation Corporation of Canada.</p>
             </div>
 
         </div>

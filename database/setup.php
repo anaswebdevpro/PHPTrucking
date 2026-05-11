@@ -8,7 +8,7 @@ try {
     // 1. Settings Table
     $pdo->exec("CREATE TABLE IF NOT EXISTS settings (
         id INT AUTO_INCREMENT PRIMARY KEY,
-        site_name VARCHAR(255) DEFAULT 'Truck Zone',
+        site_name VARCHAR(255) DEFAULT 'Transportation corporation of canada',
         phone VARCHAR(50),
         email VARCHAR(100),
         address TEXT,
@@ -24,7 +24,7 @@ try {
     $stmt = $pdo->query("SELECT COUNT(*) FROM settings");
     if($stmt->fetchColumn() == 0) {
         $pdo->exec("INSERT INTO settings (site_name, phone, email, address, facebook, instagram, twitter, linkedin) 
-            VALUES ('TRUCKZONE', '(514) 802-9999', 'info@truckzone.ca', '2362 46th Ave, Lachine, QC H8T 2P3', '#', '#', '#', '#')");
+            VALUES ('Transportation Corporation of Canada', '(514) 802-9999', 'info@transportationcorporationofcanada.ca', '2362 46th Ave, Lachine, QC H8T 2P3', '#', '#', '#', '#')");
     }
 
     // 2. Homepage Sections (General toggleable sections)
@@ -65,7 +65,7 @@ try {
     $stmt = $pdo->query("SELECT COUNT(*) FROM testimonials");
     if($stmt->fetchColumn() == 0) {
         $pdo->exec("INSERT INTO testimonials (author_name, author_role, content, avatar, stars) VALUES 
-            ('Jaspreet Singh', 'Owner Operator', 'The truck zone, best shop in Montreal. The manager helped me get all the parts for my truck.', 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=150&q=80', 5),
+            ('Jaspreet Singh', 'Owner Operator', 'The Transportation corporation of canada, best shop in Montreal. The manager helped me get all the parts for my truck.', 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=150&q=80', 5),
             ('Umer Javed', 'Fleet Manager', 'Excellent fast and efficient service. Great wide inventory and very competitive pricing.', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80', 5)");
     }
 
